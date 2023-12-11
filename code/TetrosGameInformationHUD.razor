@@ -1,0 +1,43 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+@namespace TetrosEffect
+
+<root>
+	<div class="item">
+		<h2>Time</h2>
+		<p>@GetTimeString()</p>
+	</div>
+
+	<div class="item">
+		<h2>Score</h2>
+		<p>@Board.Score</p>
+	</div>
+
+	<div class="item">
+		<h2>Highscore</h2>
+		<p>@Board.HighScore</p>
+	</div>
+</root>
+
+@code
+{
+
+	[Property] public TetrosBoardManager Board { get; set; }
+
+	string GetTimeString()
+	{
+		var time = Board.GameTime;
+		var minutes = (int)(time / 60);
+		var seconds = (int)(time % 60);
+
+		return $"{minutes}:{seconds:00}";
+	
+	}
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( Board.GameTime );
+}

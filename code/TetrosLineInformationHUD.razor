@@ -1,0 +1,35 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+@namespace TetrosEffect
+
+<root>
+
+	<div class="item">
+		<h2>Level</h2>
+		<p>@Board.Level</p>
+	</div>
+
+	<div class="item">
+		<h2>Lines</h2>
+		<p>@Board.LinesClearedThisLevel / @Board.GetLinesNeeded()</p>
+	</div>
+
+	<div class="item">
+		<h2>Total Lines</h2>
+		<p>@Board.LinesCleared</p>
+	</div>
+
+</root>
+
+@code
+{
+
+	[Property] public TetrosBoardManager Board { get; set; }
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( Board.Level, Board.LinesCleared );
+}

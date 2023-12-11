@@ -23,7 +23,9 @@ public sealed class TetrosBoardManager : Component
 	public long HighScore { get; private set; } = 0;
 	public int Level { get; set; } = 1;
 	public int LinesCleared { get; set; } = 10;
+	public int LinesClearedThisLevel { get; set; } = 0;
 	public int Combo { get; set; } = -1;
+	public float GameTime { get; set; } = 0f;
 	public List<PieceType> Queue { get; set; } = new List<PieceType>();
 	public TetrosPiece CurrentPiece { get; set; } = null;
 	public TetrosPiece HeldPiece { get; set; } = null;
@@ -34,7 +36,6 @@ public sealed class TetrosBoardManager : Component
 	// Private Game Variables
 	private List<TetrosBlock> Blocks = new List<TetrosBlock>();
 	private List<PieceType> GrabBag { get; set; } = new List<PieceType>();
-	private int LinesClearedThisLevel { get; set; } = 0;
 	private bool JustHeld { get; set; } = false;
 
 	// Timers
@@ -53,6 +54,8 @@ public sealed class TetrosBoardManager : Component
 	protected override void OnUpdate()
 	{
 		if ( !IsPlaying && !IsProxy ) return;
+
+		GameTime += Time.Delta;
 
 		var interval = GetWaitTime();
 		var fastDrop = Input.Down( "SoftDrop" );
@@ -176,11 +179,33 @@ public sealed class TetrosBoardManager : Component
 		Level = 1;
 		LinesCleared = 0;
 		LinesClearedThisLevel = 0;
+		GameTime = 0f;
 
 		if ( CurrentPiece.IsValid() )
 		{
 			CurrentPiece.GameObject.Destroy();
 			CurrentPiece = null;
+		}
+
+		if ( HeldPiece.IsValid() )
+		{
+			HeldPiece.GameObject.Destroy();
+			HeldPiece = null;
+		}
+
+		if ( GhostPiece.IsValid() )
+		{
+			GhostPiece.GameObject.Destroy();
+			GhostPiece = null;
+		}
+
+		if ( QueuePieces.Count > 0 )
+		{
+			foreach ( var piece in QueuePieces )
+			{
+				piece.GameObject.Destroy();
+			}
+			QueuePieces.Clear();
 		}
 
 		Queue.Clear();
@@ -198,15 +223,24 @@ public sealed class TetrosBoardManager : Component
 		HighScore = (long)Sandbox.Services.Stats.GetLocalPlayerStats( Game.Menu.Package.FullIdent ).Get( "tetros_highscore" ).Value;
 	}
 
-	public void EndGame()
+	public async void EndGame()
 	{
 		Sandbox.Services.Stats.Increment( "tetros_lines", LinesCleared );
 		Sandbox.Services.Stats.Increment( "tetros_games", 1 );
 		Sandbox.Services.Stats.SetValue( "tetros_highscore", Score );
+		IsPlaying = false;
+
+		await Task.DelaySeconds( 1f );
 
 		ResetGame();
 
-		IsPlaying = false;
+		foreach ( var block in Blocks )
+		{
+			SpawnParticleBurst( block.Position, block.Components.Get<ModelRenderer>().Tint );
+			block.GameObject.Destroy();
+		}
+		Blocks.Clear();
+
 	}
 
 	TetrosPiece SpawnPiece( PieceType pieceType, bool inBoard )
@@ -463,6 +497,7 @@ public sealed class TetrosBoardManager : Component
 		CurrentPiece = null;
 
 		NudgeBoard( new Vector2( 0, -0.25f ) );
+		Camera.Bloom( 0.05f );
 
 		CheckLine();
 	}
@@ -498,6 +533,8 @@ public sealed class TetrosBoardManager : Component
 				{
 					block.Position += new Vector2( 0, 1 );
 				}
+
+				Camera.Bloom( 0.2f );
 
 				lines++;
 			}
@@ -545,7 +582,7 @@ public sealed class TetrosBoardManager : Component
 		}
 	}
 
-	int GetLinesNeeded()
+	public int GetLinesNeeded()
 	{
 		switch ( Level )
 		{
