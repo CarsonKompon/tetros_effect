@@ -741,6 +741,7 @@
           "GridSize": 64,
           "Height": 20,
           "QueueLength": 10,
+          "Theme": "resources/theme_calming.tetros",
           "Width": 10
         }
       ],

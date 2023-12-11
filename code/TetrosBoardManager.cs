@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Sandbox;
 using TetrosEffect;
 using System.Diagnostics.CodeAnalysis;
+using Rhythm4K;
 
 [Category( "Tetros Effect" )]
 public sealed class TetrosBoardManager : Component
@@ -12,6 +13,7 @@ public sealed class TetrosBoardManager : Component
 	[Property] public TetrosGameCamera Camera { get; set; }
 	[Property] public GameObject Board { get; set; }
 	[Property] public GameObject BlocksContainer { get; set; }
+	[Property] public TetrosTheme Theme { get; set; }
 
 	[Property] public int Width { get; set; } = 10;
 	[Property] public int Height { get; set; } = 20;
@@ -79,8 +81,7 @@ public sealed class TetrosBoardManager : Component
 				}
 				else if ( fastDrop )
 				{
-					var sound = PlaySound( "tetros_move" );
-					sound.Pitch = 1.5f;
+					PlaySound( Theme.MoveDownSound );
 					Score++;
 				}
 			}
@@ -312,9 +313,9 @@ public sealed class TetrosBoardManager : Component
 			CurrentPiece.Position -= new Vector2( dir, 0 );
 		}
 		if ( dir < 0 )
-			PlaySound( "tetros_voice_move_left" );
+			PlaySound( Theme.MoveLeftSound );
 		else
-			PlaySound( "tetros_voice_move_right" );
+			PlaySound( Theme.MoveRightSound );
 
 		UpdateGhost();
 	}
@@ -361,9 +362,9 @@ public sealed class TetrosBoardManager : Component
 		LastUpdate /= 2f;
 
 		if ( dir < 0 )
-			PlaySound( "tetros_voice_rotate_left" );
+			PlaySound( Theme.RotateLeftSound );
 		else
-			PlaySound( "tetros_voice_rotate_right" );
+			PlaySound( Theme.RotateRightSound );
 
 		UpdateGhost();
 	}
@@ -405,7 +406,7 @@ public sealed class TetrosBoardManager : Component
 		}
 		HeldPiece.Transform.Position = GetPosition( -4, 1 );
 		JustHeld = true;
-		PlaySound( "tetros_hold" );
+		PlaySound( Theme.HoldSound );
 
 		UpdateGhost();
 	}
@@ -489,7 +490,7 @@ public sealed class TetrosBoardManager : Component
 			}
 		}
 		JustHeld = false;
-		PlaySound( "tetros_voice_place" );
+		PlaySound( Theme.PlaceSound );
 		CurrentPiece.GameObject.Destroy();
 		CurrentPiece = null;
 
@@ -539,7 +540,7 @@ public sealed class TetrosBoardManager : Component
 
 		if ( lines > 0 )
 		{
-			var sound = PlaySound( "tetros_voice_line" );
+			var sound = PlaySound( Theme.LineSound );
 			sound.Pitch = 1f + (MathF.Max( 0, Combo ) * (1.0f / 12.0f));
 
 			Combo++;
@@ -556,7 +557,7 @@ public sealed class TetrosBoardManager : Component
 					break;
 				case 4:
 					Score += 800 * Level;
-					PlaySound( "tetros_voice_tetros" );
+					PlaySound( Theme.TetrosSound );
 					break;
 			}
 
@@ -668,6 +669,7 @@ public sealed class TetrosBoardManager : Component
 
 	SoundHandle PlaySound( string soundName )
 	{
+		if ( string.IsNullOrEmpty( soundName ) ) return new SoundHandle();
 		var sound = Sound.Play( soundName, Camera.Transform.Position );
 		return sound;
 	}
