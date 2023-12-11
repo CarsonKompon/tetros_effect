@@ -311,7 +311,10 @@ public sealed class TetrosBoardManager : Component
 		{
 			CurrentPiece.Position -= new Vector2( dir, 0 );
 		}
-		PlaySound( "tetros_move" );
+		if ( dir < 0 )
+			PlaySound( "tetros_voice_move_left" );
+		else
+			PlaySound( "tetros_voice_move_right" );
 
 		UpdateGhost();
 	}
@@ -331,12 +334,7 @@ public sealed class TetrosBoardManager : Component
 			if ( CurrentPiece.Position.x < 6 )
 			{
 				CurrentPiece.Position += new Vector2( 1, 0 );
-				if ( !CheckCurrentPieceCollision() )
-				{
-					// We can rotate if we move to the right
-					PlaySound( "tetros_move" );
-				}
-				else
+				if ( CheckCurrentPieceCollision() )
 				{
 					// We can't rotate, so move back
 					CurrentPiece.Position -= new Vector2( 1, 0 );
@@ -346,12 +344,7 @@ public sealed class TetrosBoardManager : Component
 			else if ( CurrentPiece.Position.x > 6 )
 			{
 				CurrentPiece.Position -= new Vector2( 1, 0 );
-				if ( !CheckCurrentPieceCollision() )
-				{
-					// We can rotate if we move to the left
-					PlaySound( "tetros_move" );
-				}
-				else
+				if ( CheckCurrentPieceCollision() )
 				{
 					// We can't rotate, so move back
 					CurrentPiece.Position += new Vector2( 1, 0 );
@@ -366,7 +359,11 @@ public sealed class TetrosBoardManager : Component
 		}
 
 		LastUpdate /= 2f;
-		PlaySound( "tetros_rotate" );
+
+		if ( dir < 0 )
+			PlaySound( "tetros_voice_rotate_left" );
+		else
+			PlaySound( "tetros_voice_rotate_right" );
 
 		UpdateGhost();
 	}
@@ -542,7 +539,7 @@ public sealed class TetrosBoardManager : Component
 
 		if ( lines > 0 )
 		{
-			var sound = PlaySound( "tetros_line" );
+			var sound = PlaySound( "tetros_voice_line" );
 			sound.Pitch = 1f + (MathF.Max( 0, Combo ) * (1.0f / 12.0f));
 
 			Combo++;
@@ -559,7 +556,7 @@ public sealed class TetrosBoardManager : Component
 					break;
 				case 4:
 					Score += 800 * Level;
-					PlaySound( "tetros_tetris" );
+					PlaySound( "tetros_voice_tetros" );
 					break;
 			}
 
