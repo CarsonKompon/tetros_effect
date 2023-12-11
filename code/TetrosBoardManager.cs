@@ -79,7 +79,7 @@ public sealed class TetrosBoardManager : Component
 				}
 				else if ( fastDrop )
 				{
-					var sound = Sound.Play( "tetros_move" );
+					var sound = PlaySound( "tetros_move" );
 					sound.Pitch = 1.5f;
 					Score++;
 				}
@@ -311,7 +311,7 @@ public sealed class TetrosBoardManager : Component
 		{
 			CurrentPiece.Position -= new Vector2( dir, 0 );
 		}
-		Sound.Play( "tetros_move" );
+		PlaySound( "tetros_move" );
 
 		UpdateGhost();
 	}
@@ -334,7 +334,7 @@ public sealed class TetrosBoardManager : Component
 				if ( !CheckCurrentPieceCollision() )
 				{
 					// We can rotate if we move to the right
-					Sound.Play( "tetros_move" );
+					PlaySound( "tetros_move" );
 				}
 				else
 				{
@@ -349,7 +349,7 @@ public sealed class TetrosBoardManager : Component
 				if ( !CheckCurrentPieceCollision() )
 				{
 					// We can rotate if we move to the left
-					Sound.Play( "tetros_move" );
+					PlaySound( "tetros_move" );
 				}
 				else
 				{
@@ -366,7 +366,7 @@ public sealed class TetrosBoardManager : Component
 		}
 
 		LastUpdate /= 2f;
-		Sound.Play( "tetros_rotate" );
+		PlaySound( "tetros_rotate" );
 
 		UpdateGhost();
 	}
@@ -408,7 +408,7 @@ public sealed class TetrosBoardManager : Component
 		}
 		HeldPiece.Transform.Position = GetPosition( -4, 1 );
 		JustHeld = true;
-		Sound.Play( "tetros_hold" );
+		PlaySound( "tetros_hold" );
 
 		UpdateGhost();
 	}
@@ -492,7 +492,7 @@ public sealed class TetrosBoardManager : Component
 			}
 		}
 		JustHeld = false;
-		Sound.Play( "tetros_place" );
+		PlaySound( "tetros_place" );
 		CurrentPiece.GameObject.Destroy();
 		CurrentPiece = null;
 
@@ -542,7 +542,7 @@ public sealed class TetrosBoardManager : Component
 
 		if ( lines > 0 )
 		{
-			var sound = Sound.Play( "tetros_line" );
+			var sound = PlaySound( "tetros_line" );
 			sound.Pitch = 1f + (MathF.Max( 0, Combo ) * (1.0f / 12.0f));
 
 			Combo++;
@@ -559,7 +559,7 @@ public sealed class TetrosBoardManager : Component
 					break;
 				case 4:
 					Score += 800 * Level;
-					Sound.Play( "tetros_tetris" );
+					PlaySound( "tetros_tetris" );
 					break;
 			}
 
@@ -667,6 +667,12 @@ public sealed class TetrosBoardManager : Component
 	public bool HasBlock( int x, int y )
 	{
 		return Blocks.Exists( b => b.Position == new Vector2( x, y ) );
+	}
+
+	SoundHandle PlaySound( string soundName )
+	{
+		var sound = Sound.Play( soundName, Camera.Transform.Position );
+		return sound;
 	}
 
 	public float GetWaitTime()
