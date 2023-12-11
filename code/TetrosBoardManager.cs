@@ -27,7 +27,7 @@ public sealed class TetrosBoardManager : Component
 	public List<PieceType> Queue { get; set; } = new List<PieceType>();
 	public TetrosPiece CurrentPiece { get; set; } = null;
 	public TetrosPiece HeldPiece { get; set; } = null;
-	public TetrosPiece NextPiece { get; set; } = null;
+	public List<TetrosPiece> QueuePieces { get; set; } = new List<TetrosPiece>();
 	public TetrosPiece GhostPiece { get; set; } = null;
 	public bool IsPlaying { get; set; } = false;
 
@@ -144,22 +144,29 @@ public sealed class TetrosBoardManager : Component
 		}
 	}
 
-	void UpdateNextPiece()
+	void UpdateNextPieces()
 	{
-		if ( NextPiece.IsValid() )
+		foreach ( var piece in QueuePieces )
 		{
-			if ( NextPiece.Type != Queue[0] )
-			{
-				NextPiece.GameObject.Destroy();
-			}
-			else
-			{
-				return;
-			}
+			piece.GameObject.Destroy();
 		}
+		QueuePieces.Clear();
 
-		NextPiece = SpawnPiece( Queue[0], false );
-		NextPiece.Transform.Position = GetPosition( 13, 1 );
+		int am = Math.Min( QueueLength, 4 );
+		for ( int i = 0; i < am; i++ )
+		{
+			var piece = SpawnPiece( Queue[i], false );
+			piece.Transform.Position = GetPosition( 13, 1 + i * 3 );
+			if ( i > 0 )
+			{
+				foreach ( var block in piece.Container.Children )
+				{
+					var model = block.Components.Get<ModelRenderer>();
+					model.Tint = model.Tint.WithAlpha( 1f - (i / (float)am) );
+				}
+			}
+			QueuePieces.Add( piece );
+		}
 	}
 
 	public void ResetGame()
@@ -530,7 +537,7 @@ public sealed class TetrosBoardManager : Component
 
 	PieceType GetRandomPiece()
 	{
-		if ( GrabBag.Count < QueueLength )
+		if ( GrabBag.Count <= 0 )
 		{
 			GrabBag = new List<PieceType> { PieceType.I, PieceType.O, PieceType.T, PieceType.S, PieceType.Z, PieceType.J, PieceType.L };
 			GrabBag = GrabBag.OrderBy( x => Guid.NewGuid() ).ToList();
@@ -554,7 +561,7 @@ public sealed class TetrosBoardManager : Component
 		var newPiece = GetRandomPiece();
 		Queue.Add( newPiece );
 
-		UpdateNextPiece();
+		UpdateNextPieces();
 		return piece;
 	}
 
