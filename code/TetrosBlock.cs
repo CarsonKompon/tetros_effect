@@ -8,28 +8,12 @@ public sealed class TetrosBlock : Component
 {
 	public TetrosBoardManager Board;
 
-	Vector3 targetPosition;
-
 	[Property]
-	public Vector2 Position
-	{
-		get => _position;
-		set
-		{
-			_position = value;
-			targetPosition = Board.GetPosition( (int)value.x, (int)value.y );
-		}
-	}
-	private Vector2 _position;
-
-	protected override void OnStart()
-	{
-		targetPosition = Transform.Position;
-	}
+	public Vector2 Position { get; set; }
 
 	protected override void OnUpdate()
 	{
 		var lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 10 );
-		Transform.Position = Vector3.Lerp( Transform.Position, targetPosition, lerp );
+		Transform.Position = Vector3.Lerp( Transform.Position, Board.GetPosition( (int)Position.x, (int)Position.y ), lerp );
 	}
 }

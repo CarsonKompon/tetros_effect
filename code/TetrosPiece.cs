@@ -64,8 +64,8 @@ public class TetrosShape
 public static class TetrosShapes
 {
     public static readonly TetrosShape[] I = new TetrosShape[4] {
-        new TetrosShape {Blocks = new int[4] {8,9,10,11}},
-        new TetrosShape {Blocks = new int[4] {1,5,9,13}},
+        new TetrosShape {Blocks = new int[4] {4,5,6,7}},
+        new TetrosShape {Blocks = new int[4] {2,6,10,14}},
         new TetrosShape {Blocks = new int[4] {4,5,6,7}},
         new TetrosShape {Blocks = new int[4] {2,6,10,14}}
     };
@@ -78,38 +78,38 @@ public static class TetrosShapes
     };
 
     public static readonly TetrosShape[] T = new TetrosShape[4] {
-        new TetrosShape {Blocks = new int[4] {1,4,5,6}},
-        new TetrosShape {Blocks = new int[4] {1,5,6,9}},
         new TetrosShape {Blocks = new int[4] {4,5,6,9}},
-        new TetrosShape {Blocks = new int[4] {1,4,5,9}}
+        new TetrosShape {Blocks = new int[4] {1,4,5,9}},
+        new TetrosShape {Blocks = new int[4] {1,4,5,6}},
+        new TetrosShape {Blocks = new int[4] {1,5,6,9}}
     };
 
     public static readonly TetrosShape[] S = new TetrosShape[4] {
-        new TetrosShape {Blocks = new int[4] {1,2,4,5}},
+        new TetrosShape {Blocks = new int[4] {5,6,8,9}},
         new TetrosShape {Blocks = new int[4] {0,4,5,9}},
-        new TetrosShape {Blocks = new int[4] {1,2,4,5}},
+        new TetrosShape {Blocks = new int[4] {5,6,8,9}},
         new TetrosShape {Blocks = new int[4] {0,4,5,9}}
     };
 
     public static readonly TetrosShape[] Z = new TetrosShape[4] {
-        new TetrosShape {Blocks = new int[4] {0,1,5,6}},
-        new TetrosShape {Blocks = new int[4] {1,5,4,8}},
-        new TetrosShape {Blocks = new int[4] {0,1,5,6}},
-        new TetrosShape {Blocks = new int[4] {1,5,4,8}}
+        new TetrosShape {Blocks = new int[4] {4,5,9,10}},
+        new TetrosShape {Blocks = new int[4] {2,5,6,9}},
+        new TetrosShape {Blocks = new int[4] {4,5,9,10}},
+        new TetrosShape {Blocks = new int[4] {2,5,6,9}},
     };
 
     public static readonly TetrosShape[] J = new TetrosShape[4] {
-        new TetrosShape {Blocks = new int[4] {0,4,5,6}},
-        new TetrosShape {Blocks = new int[4] {1,2,5,9}},
         new TetrosShape {Blocks = new int[4] {4,5,6,10}},
-        new TetrosShape {Blocks = new int[4] {1,5,9,8}}
+        new TetrosShape {Blocks = new int[4] {1,5,9,8}},
+        new TetrosShape {Blocks = new int[4] {0,4,5,6}},
+        new TetrosShape {Blocks = new int[4] {1,2,5,9}}
     };
 
     public static readonly TetrosShape[] L = new TetrosShape[4] {
-        new TetrosShape {Blocks = new int[4] {2,4,5,6}},
-        new TetrosShape {Blocks = new int[4] {1,5,9,10}},
         new TetrosShape {Blocks = new int[4] {4,5,6,8}},
-        new TetrosShape {Blocks = new int[4] {0,1,5,9}}
+        new TetrosShape {Blocks = new int[4] {0,1,5,9}},
+        new TetrosShape {Blocks = new int[4] {2,4,5,6}},
+        new TetrosShape {Blocks = new int[4] {1,5,9,10}}
     };
 
     public static TetrosShape GetShape( PieceType blockType, int rotation )

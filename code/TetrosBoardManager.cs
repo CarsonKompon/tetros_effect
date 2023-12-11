@@ -202,6 +202,7 @@ public sealed class TetrosBoardManager : Component
 		var blockRenderer = blockObject.Components.Get<ModelRenderer>();
 		if ( blockRenderer != null ) blockRenderer.Tint = color;
 		Blocks.Add( blockScript );
+		Log.Info( Blocks.Count );
 		return blockObject;
 	}
 
@@ -293,8 +294,8 @@ public sealed class TetrosBoardManager : Component
 		{
 			if ( grid[i] == 1 )
 			{
-				var x = (int)pos.x + (i % 4) - 1;
-				var y = (int)pos.y + (i / 4) - 1;
+				int x = (int)pos.x + (i % 4) - 1;
+				int y = (int)pos.y + (i / 4) - 1;
 				if ( y < 0 )
 				{
 					EndGame();
@@ -328,17 +329,18 @@ public sealed class TetrosBoardManager : Component
 
 			if ( line )
 			{
-				var lineBlocks = Blocks.Where( b => b.Position.y == y );
-				foreach ( var block in lineBlocks )
+				var lineBlocks = Blocks.FindAll( b => (int)b.Position.y == y );
+				for ( int i = 0; i < lineBlocks.Count(); i++ )
 				{
+					var block = lineBlocks.ElementAt( i );
 					block.GameObject.Destroy();
 					Blocks.Remove( block );
 				}
 
-				var blocksAbove = Blocks.Where( b => b.Position.y > y );
+				var blocksAbove = Blocks.FindAll( b => (int)b.Position.y < y );
 				foreach ( var block in blocksAbove )
 				{
-					block.Position -= new Vector2( 0, 1 );
+					block.Position += new Vector2( 0, 1 );
 				}
 
 				lines++;
