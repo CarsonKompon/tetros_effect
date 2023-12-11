@@ -10,6 +10,8 @@ public sealed class TetrosBoardManager : Component
 {
 	[Property] public TetrosGameManager GameManager { get; set; }
 	[Property] public TetrosGameCamera Camera { get; set; }
+	[Property] public GameObject Board { get; set; }
+	[Property] public GameObject BlocksContainer { get; set; }
 
 	[Property] public int Width { get; set; } = 10;
 	[Property] public int Height { get; set; } = 20;
@@ -24,7 +26,9 @@ public sealed class TetrosBoardManager : Component
 	public int Combo { get; set; } = -1;
 	public List<PieceType> Queue { get; set; } = new List<PieceType>();
 	public TetrosPiece CurrentPiece { get; set; } = null;
-	public PieceType Held { get; set; } = PieceType.Empty;
+	public TetrosPiece HeldPiece { get; set; } = null;
+	public TetrosPiece NextPiece { get; set; } = null;
+	public TetrosPiece GhostPiece { get; set; } = null;
 	public bool IsPlaying { get; set; } = false;
 
 	// Private Game Variables
@@ -38,8 +42,11 @@ public sealed class TetrosBoardManager : Component
 	private TimeSince LeftTimer = 0f;
 	private TimeSince RightTimer = 0f;
 
+	Vector3 AnchorPosition;
+
 	protected override void OnStart()
 	{
+		AnchorPosition = Board.Transform.Position;
 		StartGame();
 	}
 
@@ -79,6 +86,8 @@ public sealed class TetrosBoardManager : Component
 			{
 				LastUpdate = -GetWaitTime() / 4f;
 			}
+
+			UpdateGhost();
 		}
 
 		// Check for Input
@@ -123,6 +132,10 @@ public sealed class TetrosBoardManager : Component
 				Rotate( 1 );
 			}
 		}
+
+		// Lerp to anchor position
+		var lerpAm = 1f - MathF.Pow( 0.5f, Time.Delta * 10 );
+		Board.Transform.Position = Vector3.Lerp( Board.Transform.Position, AnchorPosition, lerpAm );
 	}
 
 	public void ResetGame()
@@ -136,6 +149,7 @@ public sealed class TetrosBoardManager : Component
 		if ( CurrentPiece.IsValid() )
 		{
 			CurrentPiece.GameObject.Destroy();
+			CurrentPiece = null;
 		}
 
 		Queue.Clear();
@@ -164,13 +178,8 @@ public sealed class TetrosBoardManager : Component
 		IsPlaying = false;
 	}
 
-	void SpawnCurrentPiece( PieceType pieceType )
+	TetrosPiece SpawnPiece( PieceType pieceType, bool inBoard )
 	{
-		if ( CurrentPiece.IsValid() )
-		{
-			CurrentPiece.GameObject.Destroy();
-		}
-
 		GameObject prefab = null;
 		switch ( pieceType )
 		{
@@ -186,8 +195,32 @@ public sealed class TetrosBoardManager : Component
 		if ( prefab is not null )
 		{
 			var pieceObj = SceneUtility.Instantiate( prefab, GetPosition( 5, -2 ) );
+			pieceObj.SetParent( BlocksContainer );
 			pieceObj.Enabled = true;
-			CurrentPiece = pieceObj.Components.GetInChildrenOrSelf<TetrosPiece>();
+			var piece = pieceObj.Components.GetInChildrenOrSelf<TetrosPiece>();
+			foreach ( var child in piece.Container.Children )
+			{
+				var model = child.Components.Get<ModelRenderer>();
+				model.Tint = piece.Color;
+			}
+			return piece;
+		}
+
+		return null;
+	}
+
+	void SpawnCurrentPiece( PieceType pieceType )
+	{
+		if ( CurrentPiece.IsValid() )
+		{
+			CurrentPiece.GameObject.Destroy();
+			CurrentPiece = null;
+		}
+
+		CurrentPiece = SpawnPiece( pieceType, true );
+
+		if ( CurrentPiece is not null )
+		{
 			CurrentPiece.Board = this;
 		}
 	}
@@ -195,14 +228,13 @@ public sealed class TetrosBoardManager : Component
 	GameObject SpawnBlock( Vector2 position, Color color )
 	{
 		var blockObject = SceneUtility.Instantiate( GameManager.BlockPrefab, GetPosition( (int)position.x, (int)position.y ) );
-		blockObject.SetParent( GameObject );
+		blockObject.SetParent( BlocksContainer );
 		var blockScript = blockObject.Components.Get<TetrosBlock>();
 		blockScript.Board = this;
 		blockScript.Position = position;
 		var blockRenderer = blockObject.Components.Get<ModelRenderer>();
 		if ( blockRenderer != null ) blockRenderer.Tint = color;
 		Blocks.Add( blockScript );
-		Log.Info( Blocks.Count );
 		return blockObject;
 	}
 
@@ -215,6 +247,8 @@ public sealed class TetrosBoardManager : Component
 			CurrentPiece.Position -= new Vector2( dir, 0 );
 		}
 		Sound.Play( "tetros_move" );
+
+		UpdateGhost();
 	}
 
 	public void Rotate( int dir = 1 )
@@ -230,6 +264,8 @@ public sealed class TetrosBoardManager : Component
 		}
 		LastUpdate /= 2f;
 		Sound.Play( "tetros_rotate" );
+
+		UpdateGhost();
 	}
 
 	public void HardDrop()
@@ -244,6 +280,10 @@ public sealed class TetrosBoardManager : Component
 		CurrentPiece.Position -= new Vector2( 0, 1 );
 		PlaceCurrentPiece();
 		LastUpdate = GetWaitTime() / 4f * 3f;
+
+		NudgeBoard( new Vector2( 0, -0.5f ) );
+
+		UpdateGhost();
 	}
 
 	public void Hold()
@@ -251,19 +291,56 @@ public sealed class TetrosBoardManager : Component
 		if ( JustHeld ) return;
 		if ( CurrentPiece is null ) return;
 
-		if ( Held == PieceType.Empty )
+		if ( !HeldPiece.IsValid() )
 		{
-			Held = CurrentPiece.Type;
+			HeldPiece = SpawnPiece( CurrentPiece.Type, false );
 			CurrentPiece.GameObject.Destroy();
 		}
 		else
 		{
-			var temp = Held;
-			Held = CurrentPiece.Type;
-			SpawnCurrentPiece( temp );
+			var heldType = HeldPiece.Type;
+			HeldPiece.GameObject.Destroy();
+			HeldPiece = SpawnPiece( CurrentPiece.Type, false );
+			SpawnCurrentPiece( heldType );
 		}
+		HeldPiece.Transform.Position = GetPosition( -4, 1 );
 		JustHeld = true;
 		Sound.Play( "tetros_hold" );
+
+		UpdateGhost();
+	}
+
+	void UpdateGhost()
+	{
+		if ( !CurrentPiece.IsValid() )
+		{
+			if ( GhostPiece.IsValid() )
+			{
+				GhostPiece.GameObject.Destroy();
+				GhostPiece = null;
+			}
+			return;
+		}
+
+		if ( GhostPiece.IsValid() && GhostPiece.Type != CurrentPiece.Type )
+		{
+			GhostPiece.GameObject.Destroy();
+			GhostPiece = null;
+		}
+
+		if ( !GhostPiece.IsValid() )
+		{
+			GhostPiece = SpawnPiece( CurrentPiece.Type, false );
+		}
+
+		Vector2 ghostOffset = Vector2.Zero;
+		while ( !CheckCurrentPieceCollision( ghostOffset ) )
+		{
+			ghostOffset += new Vector2( 0, 1 );
+		}
+		ghostOffset -= new Vector2( 0, 1 );
+		GhostPiece.Transform.Position = GetPosition( (int)CurrentPiece.Position.x + (int)ghostOffset.x, (int)CurrentPiece.Position.y + (int)ghostOffset.y ) + new Vector3( GridSize / 2f, 0, -GridSize / 2f ); ;
+		GhostPiece.SetRotation( CurrentPiece.PieceRotation, true );
 	}
 
 	bool CheckCurrentPieceCollision( Vector2 offset = default )
@@ -302,12 +379,15 @@ public sealed class TetrosBoardManager : Component
 					return;
 				}
 
-				SpawnBlock( new Vector2( x, y ), Color.Cyan );
+				SpawnBlock( new Vector2( x, y ), CurrentPiece.Color );
 			}
 		}
 		JustHeld = false;
 		Sound.Play( "tetros_place" );
 		CurrentPiece.GameObject.Destroy();
+		CurrentPiece = null;
+
+		NudgeBoard( new Vector2( 0, -0.25f ) );
 
 		CheckLine();
 	}
@@ -333,6 +413,7 @@ public sealed class TetrosBoardManager : Component
 				for ( int i = 0; i < lineBlocks.Count(); i++ )
 				{
 					var block = lineBlocks.ElementAt( i );
+					SpawnParticleBurst( block.Position, block.Components.Get<ModelRenderer>().Tint );
 					block.GameObject.Destroy();
 					Blocks.Remove( block );
 				}
@@ -445,9 +526,28 @@ public sealed class TetrosBoardManager : Component
 		return piece;
 	}
 
+	public void SpawnParticleBurst( Vector2 position, Color color )
+	{
+		var particle = SceneUtility.Instantiate( GameManager.ParticleBurstPrefab, GetPosition( (int)position.x, (int)position.y ) );
+		particle.SetParent( GameObject );
+		particle.Enabled = true;
+		var particleScript = particle.Components.Get<ParticleEffect>();
+		particleScript.Tint = color;
+	}
+
+	public void NudgeBoard( Vector2 direction )
+	{
+		Board.Transform.Position += new Vector3( direction.x * GridSize, 0, direction.y * GridSize );
+	}
+
 	public Vector3 GetPosition( int x, int y )
 	{
 		return Transform.Position + new Vector3( x * GridSize, 0, -y * GridSize );
+	}
+
+	public Vector3 GetLocalPosition( int x, int y )
+	{
+		return new Vector3( x * GridSize, 0, -y * GridSize );
 	}
 
 	public bool HasBlock( int x, int y )

@@ -18,4 +18,6 @@ public sealed class TetrosGameManager : Component
 	[Property] public GameObject PieceZPrefab { get; set; }
 	[Property] public GameObject PieceIPrefab { get; set; }
 
+	[Property] public GameObject ParticleBurstPrefab { get; set; }
+
 }

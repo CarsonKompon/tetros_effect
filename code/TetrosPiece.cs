@@ -15,15 +15,17 @@ public class TetrosPiece : Component
     [Property] public GameObject Container { get; set; }
     [Property] public Vector2 Position { get; set; } = new Vector2( 5, -2 );
     [Property] public int PieceRotation { get; set; } = 0;
+    [Property] public Color Color { get; set; } = Color.White;
 
     [Property] public List<float> CustomPieceRotations { get; set; } = new List<float>();
 
     protected override void OnUpdate()
     {
+        if ( Board is null ) return;
+
         // Rotate
         var lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 25 );
         var customAngle = PieceRotation * 90f;
-        Log.Info( $"rot: {PieceRotation}: {customAngle}" );
         if ( CustomPieceRotations.Count > PieceRotation && CustomPieceRotations[PieceRotation] != -1 )
         {
             customAngle = CustomPieceRotations[PieceRotation];
@@ -32,8 +34,22 @@ public class TetrosPiece : Component
 
         // Lerp to position
         lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 15 );
-        var targetPosition = Board.GetPosition( (int)Position.x, (int)Position.y ) + new Vector3( Board.GridSize / 2f, 0, -Board.GridSize / 2f );
-        Transform.Position = Vector3.Lerp( Transform.Position, targetPosition, lerp );
+        var targetPosition = Board.GetLocalPosition( (int)Position.x, (int)Position.y ) + new Vector3( Board.GridSize / 2f, 0, -Board.GridSize / 2f );
+        Transform.LocalPosition = Vector3.Lerp( Transform.LocalPosition, targetPosition, lerp );
+    }
+
+    public void SetRotation( int i, bool instant = false )
+    {
+        PieceRotation = i;
+        if ( instant )
+        {
+            var customAngle = PieceRotation * 90f;
+            if ( CustomPieceRotations.Count > PieceRotation && CustomPieceRotations[PieceRotation] != -1 )
+            {
+                customAngle = CustomPieceRotations[PieceRotation];
+            }
+            Container.Transform.Rotation = Rotation.From( new Angles( customAngle, 0, 0 ) );
+        }
     }
 }
 
@@ -93,9 +109,9 @@ public static class TetrosShapes
 
     public static readonly TetrosShape[] Z = new TetrosShape[4] {
         new TetrosShape {Blocks = new int[4] {4,5,9,10}},
-        new TetrosShape {Blocks = new int[4] {2,5,6,9}},
+        new TetrosShape {Blocks = new int[4] {6,9,10,13}},
         new TetrosShape {Blocks = new int[4] {4,5,9,10}},
-        new TetrosShape {Blocks = new int[4] {2,5,6,9}},
+        new TetrosShape {Blocks = new int[4] {6,9,10,13}}
     };
 
     public static readonly TetrosShape[] J = new TetrosShape[4] {
