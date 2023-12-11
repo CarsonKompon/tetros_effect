@@ -27,6 +27,61 @@
     "LeaderboardType": "None",
     "CsProjName": "",
     "StartupScene": "scenes/minimal.scene",
-    "ProjectTemplate": null
+    "ProjectTemplate": null,
+    "ControlModes": {
+      "Keyboard": true,
+      "Gamepad": true
+    },
+    "InputSettings": {
+      "Actions": [
+        {
+          "Name": "MoveLeft",
+          "KeyboardCode": "LEFTARROW",
+          "GamepadCode": "DpadEast",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "MoveRight",
+          "KeyboardCode": "RIGHTARROW",
+          "GamepadCode": "DpadWest",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "RotateLeft",
+          "KeyboardCode": "z",
+          "GamepadCode": "X",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "RotateRight",
+          "KeyboardCode": "x",
+          "GamepadCode": "A",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "SoftDrop",
+          "KeyboardCode": "DOWNARROW",
+          "GamepadCode": "DpadSouth",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "HardDrop",
+          "KeyboardCode": "SPACE",
+          "GamepadCode": "DpadNorth",
+          "GroupName": "Movement"
+        },
+        {
+          "Name": "Hold",
+          "KeyboardCode": "SHIFT",
+          "GamepadCode": "SwitchRightBumper",
+          "GroupName": "Actions"
+        },
+        {
+          "Name": "Chat",
+          "KeyboardCode": "enter",
+          "GroupName": "Other"
+        }
+      ]
+    }
   }
 }

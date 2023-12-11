@@ -1,0 +1,58 @@
+{
+  "RootObject": {
+    "Id": "b99fa37b-95ca-4fa4-bedb-b17c93b169e6",
+    "Name": "piece_j",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "TetrosPiece",
+        "__enabled": true,
+        "Container": "9dfbca42-5746-4833-8a7d-60f4bce2eaf1",
+        "TargetRotation": 0,
+        "Type": "J"
+      }
+    ],
+    "Children": [
+      {
+        "Id": "9dfbca42-5746-4833-8a7d-60f4bce2eaf1",
+        "Name": "Container",
+        "Position": "-32,0,32",
+        "Enabled": true,
+        "Children": [
+          {
+            "Id": "78ca0617-ac96-41d5-a7d1-70dff4d265be",
+            "Name": "block",
+            "Position": "0,0,0",
+            "Enabled": true,
+            "__Prefab": "prefabs/block.object"
+          },
+          {
+            "Id": "62b78213-ecbc-4a02-ad42-9e44f93fa4a9",
+            "Name": "block",
+            "Position": "-64,0,0",
+            "Enabled": true,
+            "__Prefab": "prefabs/block.object"
+          },
+          {
+            "Id": "8617b0fa-eafc-4292-b363-4afbfa64e8de",
+            "Name": "block",
+            "Position": "64,0,-64",
+            "Enabled": true,
+            "__Prefab": "prefabs/block.object"
+          },
+          {
+            "Id": "544b04a6-9f24-49c1-90a2-5ff0af3d3559",
+            "Name": "block",
+            "Position": "64,0,0",
+            "Enabled": true,
+            "__Prefab": "prefabs/block.object"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

@@ -1,0 +1,155 @@
+{
+  "GameObjects": [
+    {
+      "Id": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
+      "Name": "Game Manager",
+      "Position": "-198.5726,-300.1547,628.7739",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TetrosGameManager",
+          "__enabled": true,
+          "BlockPrefab": "prefabs/block.object",
+          "Boards": [
+            "13acaa9e-a456-4e92-b479-340f470ddd77"
+          ],
+          "PieceIPrefab": "prefabs/piece_i.object",
+          "PieceJPrefab": "prefabs/piece_j.object",
+          "PieceLPrefab": "prefabs/piece_l.object",
+          "PieceOPrefab": "prefabs/piece_o.object",
+          "PieceSPrefab": "prefabs/piece_s.object",
+          "PieceTPrefab": "prefabs/piece_t.object",
+          "PieceZPrefab": "prefabs/piece_z.object"
+        }
+      ]
+    },
+    {
+      "Id": "6d57a4b8-a682-44b5-90bf-0edbad29d531",
+      "Name": "Directional Light",
+      "Position": "0.0000167524,-2110.244,322.3834",
+      "Rotation": "-0.1896882,0.3862845,0.5674009,0.7020389",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "DirectionalLight",
+          "__enabled": true,
+          "LightColor": "1,1,1,1",
+          "Shadows": true,
+          "SkyColor": "0.05882,0.07451,0.08235,1"
+        }
+      ]
+    },
+    {
+      "Id": "13acaa9e-a456-4e92-b479-340f470ddd77",
+      "Name": "Singleplayer Board",
+      "Position": "-320,-0.0004807256,608",
+      "Networked": true,
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "TetrosBoardManager",
+          "__enabled": true,
+          "Camera": "407067ac-fe0d-42d7-bd12-a93e1280810a",
+          "GameManager": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
+          "GridSize": 64,
+          "Height": 20,
+          "QueueLength": 10,
+          "Width": 10
+        }
+      ],
+      "Children": [
+        {
+          "Id": "f8dd9222-9ab7-4d1a-aac7-2e28dd4cd410",
+          "Name": "Board Model",
+          "Position": "320,0,-608",
+          "Rotation": "0.707107,0,0,0.7071065",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "__enabled": true,
+              "BodyGroups": 18446744073709551615,
+              "MaterialOverride": "materials/glowing.vmat",
+              "Model": "models/board.vmdl",
+              "ShouldCastShadows": false,
+              "Tint": "1,1,1,1"
+            }
+          ]
+        },
+        {
+          "Id": "407067ac-fe0d-42d7-bd12-a93e1280810a",
+          "Name": "Main Camera",
+          "Position": "237.0393,-2110.292,-484.2302",
+          "Rotation": "-0.02735923,0.02776051,0.701407,0.7116945",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "CameraComponent",
+              "__enabled": true,
+              "BackgroundColor": "0.08911,0.08911,0.08911,1",
+              "ClearFlags": "All",
+              "FieldOfView": 60,
+              "Orthographic": true,
+              "OrthographicHeight": 1614.402,
+              "RenderExcludeTags": "",
+              "RenderTags": "",
+              "TargetEye": "None",
+              "ZFar": 10000,
+              "ZNear": 10
+            },
+            {
+              "__type": "Bloom",
+              "__enabled": true,
+              "BloomColor": {
+                "color": [
+                  {
+                    "c": "1,1,1,1"
+                  },
+                  {
+                    "t": 1,
+                    "c": "1,1,1,1"
+                  }
+                ],
+                "alpha": []
+              },
+              "BloomCurve": [
+                {
+                  "y": 0.5,
+                  "in": -1.9428567,
+                  "out": 1.9428567
+                },
+                {
+                  "x": 1,
+                  "y": 1,
+                  "in": -0.7164179,
+                  "out": 0.7164179
+                }
+              ],
+              "Mode": "Additive",
+              "Strength": 0.75,
+              "Threshold": 0.06,
+              "ThresholdWidth": 0
+            },
+            {
+              "__type": "TetrosGameCamera",
+              "__enabled": true,
+              "LerpSpeed": 5
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "Lerping": true,
+    "UseFixedUpdate": true,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "MaxFixedUpdates": 5,
+    "FixedUpdateFrequency": 50,
+    "NetworkFrequency": 60
+  },
+  "Title": "tetros",
+  "Description": "",
+  "__references": []
+}

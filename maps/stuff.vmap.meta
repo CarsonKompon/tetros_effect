@@ -1,0 +1,27 @@
+{
+  "publish": {
+    "Allowed": true,
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "stuff",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "stuff",
+      "Tags": null,
+      "Schema": 0,
+      "HasAssets": false,
+      "AssetsPath": null,
+      "Resources": null,
+      "MenuResources": "*",
+      "HasCode": false,
+      "CodePath": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "eurorp.white_rough#15616"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "maps/stuff.vmap"
+      }
+    }
+  }
+}
