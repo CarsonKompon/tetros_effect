@@ -138,6 +138,24 @@ public sealed class TetrosBoardManager : Component
 		Board.Transform.Position = Vector3.Lerp( Board.Transform.Position, AnchorPosition, lerpAm );
 	}
 
+	void UpdateNextPiece()
+	{
+		if ( NextPiece.IsValid() )
+		{
+			if ( NextPiece.Type != Queue[0] )
+			{
+				NextPiece.GameObject.Destroy();
+			}
+			else
+			{
+				return;
+			}
+		}
+
+		NextPiece = SpawnPiece( Queue[0], false );
+		NextPiece.Transform.Position = GetPosition( 13, 1 );
+	}
+
 	public void ResetGame()
 	{
 		Score = 0;
@@ -524,6 +542,8 @@ public sealed class TetrosBoardManager : Component
 		Queue.RemoveAt( 0 );
 		var newPiece = GetRandomPiece();
 		Queue.Add( newPiece );
+
+		UpdateNextPiece();
 		return piece;
 	}
 
