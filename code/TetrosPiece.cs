@@ -24,7 +24,7 @@ public class TetrosPiece : Component
         // Lerp to position
         lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 15 );
         var targetPosition = Board.GetPosition( (int)Position.x, (int)Position.y ) + new Vector3( Board.GridSize / 2f, 0, -Board.GridSize / 2f );
-        Container.Transform.Position = Vector3.Lerp( Container.Transform.Position, targetPosition, lerp );
+        Transform.Position = Vector3.Lerp( Transform.Position, targetPosition, lerp );
     }
 }
 

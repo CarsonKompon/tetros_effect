@@ -3,7 +3,6 @@
     {
       "Id": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
       "Name": "Game Manager",
-      "Position": "-198.5726,-300.1547,628.7739",
       "Enabled": true,
       "Components": [
         {
@@ -13,13 +12,13 @@
           "Boards": [
             "13acaa9e-a456-4e92-b479-340f470ddd77"
           ],
-          "PieceIPrefab": "prefabs/piece_i.object",
-          "PieceJPrefab": "prefabs/piece_j.object",
-          "PieceLPrefab": "prefabs/piece_l.object",
-          "PieceOPrefab": "prefabs/piece_o.object",
-          "PieceSPrefab": "prefabs/piece_s.object",
-          "PieceTPrefab": "prefabs/piece_t.object",
-          "PieceZPrefab": "prefabs/piece_z.object"
+          "PieceIPrefab": "a653709a-edcb-4060-9f7f-10d2b6caf69b",
+          "PieceJPrefab": "6400b76d-a251-4c3b-aaeb-a55b03cc2ea8",
+          "PieceLPrefab": "bd9e0417-8df3-4064-8e7f-516a9a83f665",
+          "PieceOPrefab": "37772237-eaae-4f7b-920c-67a7c905c769",
+          "PieceSPrefab": "6d10dff7-5241-40aa-b6f3-580f913cd931",
+          "PieceTPrefab": "30e39db8-b30e-4875-910a-5b69d8fc7aa3",
+          "PieceZPrefab": "edba306f-b5e9-4405-b47c-a5f79f54b5fb"
         }
       ]
     },
@@ -36,6 +35,662 @@
           "LightColor": "1,1,1,1",
           "Shadows": true,
           "SkyColor": "0.05882,0.07451,0.08235,1"
+        }
+      ]
+    },
+    {
+      "Id": "29d09564-cff4-450c-b3d7-d8136aed8f0b",
+      "Name": "Pieces",
+      "Enabled": true,
+      "Children": [
+        {
+          "Id": "edba306f-b5e9-4405-b47c-a5f79f54b5fb",
+          "Name": "piece_z",
+          "Components": [
+            {
+              "__type": "TetrosPiece",
+              "__enabled": true,
+              "Board": null,
+              "Container": "0bd267c6-40e8-4957-b620-3b8eb73dd26e",
+              "PieceRotation": 0,
+              "Position": "5,-2",
+              "Type": "Z"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "0bd267c6-40e8-4957-b620-3b8eb73dd26e",
+              "Name": "Container",
+              "Position": "-32,0,-32",
+              "Enabled": true,
+              "Children": [
+                {
+                  "Id": "b5e3adb3-3958-4834-a969-912083a55592",
+                  "Name": "block",
+                  "Position": "0,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "9877ea42-8365-4e7a-88be-2b9475fcbeb4",
+                  "Name": "block",
+                  "Position": "64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "859e9832-e409-49df-a056-0cf735712909",
+                  "Name": "block",
+                  "Position": "0,0,64",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "883c9e91-3d4b-4e5f-ba4a-ab6a211d1076",
+                  "Name": "block",
+                  "Position": "-64,0,64",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "30e39db8-b30e-4875-910a-5b69d8fc7aa3",
+          "Name": "piece_t",
+          "Components": [
+            {
+              "__type": "TetrosPiece",
+              "__enabled": true,
+              "Board": null,
+              "Container": "a00dcadb-882e-4105-9f02-e5f3decccc43",
+              "PieceRotation": 0,
+              "Position": "5,-2",
+              "Type": "T"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "a00dcadb-882e-4105-9f02-e5f3decccc43",
+              "Name": "Container",
+              "Position": "-32,0,32",
+              "Enabled": true,
+              "Children": [
+                {
+                  "Id": "d2d438ad-bd25-4a41-a858-380da3125919",
+                  "Name": "block",
+                  "Position": "0,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "425472bf-81bc-4da9-bd0c-0d077ab7e92a",
+                  "Name": "block",
+                  "Position": "64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "bf5e595b-2681-46ff-aca7-8c67c372fb97",
+                  "Name": "block",
+                  "Position": "0,0,-64",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "4e9e5516-5b6d-4cc5-9b03-0806ae7a2dda",
+                  "Name": "block",
+                  "Position": "-64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "6d10dff7-5241-40aa-b6f3-580f913cd931",
+          "Name": "piece_s",
+          "Components": [
+            {
+              "__type": "TetrosPiece",
+              "__enabled": true,
+              "Board": null,
+              "Container": "269a387d-1a57-4a68-8c6b-f1a9519271d0",
+              "PieceRotation": 0,
+              "Position": "5,-2",
+              "Type": "S"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "269a387d-1a57-4a68-8c6b-f1a9519271d0",
+              "Name": "Container",
+              "Position": "-32,0,32",
+              "Enabled": true,
+              "Children": [
+                {
+                  "Id": "fc935541-fcd2-4d21-a024-158ea0117c19",
+                  "Name": "block",
+                  "Position": "0,0,-64",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "005aae78-a7e2-4c1b-ac59-6c9e09875c57",
+                  "Name": "block",
+                  "Position": "-64,0,-64",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "117ad3c2-bfaa-4509-90d5-58a80f2c8143",
+                  "Name": "block",
+                  "Position": "0,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "5f431438-281c-499c-bc80-e6afe9dcbdb3",
+                  "Name": "block",
+                  "Position": "64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "37772237-eaae-4f7b-920c-67a7c905c769",
+          "Name": "piece_o",
+          "Components": [
+            {
+              "__type": "TetrosPiece",
+              "__enabled": true,
+              "Board": null,
+              "Container": "3089eb41-d375-42fe-af86-a9bb93cf7873",
+              "PieceRotation": 0,
+              "Position": "5,-2",
+              "Type": "O"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "3089eb41-d375-42fe-af86-a9bb93cf7873",
+              "Name": "Container",
+              "Enabled": true,
+              "Children": [
+                {
+                  "Id": "39ea5658-979e-4317-aafa-c5eb4c6d1907",
+                  "Name": "block",
+                  "Position": "-32,0,32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "7bc390b2-b2d6-45eb-9795-b641c021fed0",
+                  "Name": "block",
+                  "Position": "-32,-0.0001453893,-32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "c36b2d99-95cd-43f8-aa4d-3d3ebeaf69f6",
+                  "Name": "block",
+                  "Position": "32,0,32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "d8caff8e-7c46-4b70-9660-e83e6715608b",
+                  "Name": "block",
+                  "Position": "32,0,-32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "bd9e0417-8df3-4064-8e7f-516a9a83f665",
+          "Name": "piece_l",
+          "Components": [
+            {
+              "__type": "TetrosPiece",
+              "__enabled": true,
+              "Board": null,
+              "Container": "5392126c-c4db-439c-b45c-fa02d7357791",
+              "PieceRotation": 0,
+              "Position": "5,-2",
+              "Type": "L"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "5392126c-c4db-439c-b45c-fa02d7357791",
+              "Name": "Container",
+              "Position": "-32,0,32",
+              "Enabled": true,
+              "Children": [
+                {
+                  "Id": "ea69e2e7-9a2c-46db-81aa-846f5139217b",
+                  "Name": "block",
+                  "Position": "0,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "7664ce0d-9793-40cb-b173-96f8a0f9710d",
+                  "Name": "block",
+                  "Position": "-64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "c9109223-88e6-45e7-8a26-9aab94871717",
+                  "Name": "block",
+                  "Position": "-64,0,-64",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "2407cc7e-94d9-4bbb-809c-da392196c848",
+                  "Name": "block",
+                  "Position": "64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "6400b76d-a251-4c3b-aaeb-a55b03cc2ea8",
+          "Name": "piece_j",
+          "Components": [
+            {
+              "__type": "TetrosPiece",
+              "__enabled": true,
+              "Board": null,
+              "Container": "62b855e6-7caa-44a1-ae38-7c6fdb59e6f1",
+              "PieceRotation": 0,
+              "Position": "5,-2",
+              "Type": "J"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "62b855e6-7caa-44a1-ae38-7c6fdb59e6f1",
+              "Name": "Container",
+              "Position": "-32,0,32",
+              "Enabled": true,
+              "Children": [
+                {
+                  "Id": "b53eeec3-b1b6-4336-ab45-77f823f6f916",
+                  "Name": "block",
+                  "Position": "0,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "05095b2c-3539-40d6-a640-a5c692e3166e",
+                  "Name": "block",
+                  "Position": "-64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "50db4a8e-c958-4cbb-8805-d399a82f286e",
+                  "Name": "block",
+                  "Position": "64,0,-64",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "9eae5ed2-25ed-4213-8b51-f057ba5cc838",
+                  "Name": "block",
+                  "Position": "64,0,0",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Id": "a653709a-edcb-4060-9f7f-10d2b6caf69b",
+          "Name": "piece_i",
+          "Components": [
+            {
+              "__type": "TetrosPiece",
+              "__enabled": true,
+              "Board": null,
+              "Container": "e2d24987-db59-40c5-9e2b-aded74eb622e",
+              "PieceRotation": 0,
+              "Position": "5,-2",
+              "Type": "I"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "e2d24987-db59-40c5-9e2b-aded74eb622e",
+              "Name": "Container",
+              "Enabled": true,
+              "Children": [
+                {
+                  "Id": "e3760a7d-d23b-4d2d-9fdb-095855447925",
+                  "Name": "block",
+                  "Position": "-32,0,32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "d8d8c882-7086-45c3-9a32-470135793b27",
+                  "Name": "block",
+                  "Position": "-96,0,32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "07a38708-24e2-4ec9-8118-9d80519760c8",
+                  "Name": "block",
+                  "Position": "32,0,32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                },
+                {
+                  "Id": "11007948-8ddb-4a6c-98ca-585dc6fb6ca3",
+                  "Name": "block",
+                  "Position": "96,0,32",
+                  "Enabled": true,
+                  "Components": [
+                    {
+                      "__type": "ModelRenderer",
+                      "__enabled": true,
+                      "BodyGroups": 18446744073709551615,
+                      "MaterialOverride": "materials/glowing.vmat",
+                      "Model": "models/block.vmdl",
+                      "ShouldCastShadows": true,
+                      "Tint": "1,1,1,1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
