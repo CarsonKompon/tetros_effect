@@ -136,6 +136,12 @@ public sealed class TetrosBoardManager : Component
 		// Lerp to anchor position
 		var lerpAm = 1f - MathF.Pow( 0.5f, Time.Delta * 10 );
 		Board.Transform.Position = Vector3.Lerp( Board.Transform.Position, AnchorPosition, lerpAm );
+
+		// Move the ghost piece
+		if ( GhostPiece.IsValid() )
+		{
+			GhostPiece.Transform.Position = GetPosition( (int)CurrentPiece.Position.x + (int)LastGhostOffset.x, (int)CurrentPiece.Position.y + (int)LastGhostOffset.y ) + new Vector3( GridSize / 2f, 0, -GridSize / 2f ); ;
+		}
 	}
 
 	void UpdateNextPiece()
@@ -328,6 +334,7 @@ public sealed class TetrosBoardManager : Component
 		UpdateGhost();
 	}
 
+	Vector2 LastGhostOffset = Vector2.Zero;
 	void UpdateGhost()
 	{
 		if ( !CurrentPiece.IsValid() )
@@ -349,15 +356,19 @@ public sealed class TetrosBoardManager : Component
 		if ( !GhostPiece.IsValid() )
 		{
 			GhostPiece = SpawnPiece( CurrentPiece.Type, false );
+			foreach ( var block in GhostPiece.Container.Children )
+			{
+				var model = block.Components.Get<ModelRenderer>();
+				model.Tint = model.Tint.WithAlpha( 0.2f );
+			}
 		}
 
-		Vector2 ghostOffset = Vector2.Zero;
-		while ( !CheckCurrentPieceCollision( ghostOffset ) )
+		LastGhostOffset = Vector2.Zero;
+		while ( !CheckCurrentPieceCollision( LastGhostOffset ) )
 		{
-			ghostOffset += new Vector2( 0, 1 );
+			LastGhostOffset += new Vector2( 0, 1 );
 		}
-		ghostOffset -= new Vector2( 0, 1 );
-		GhostPiece.Transform.Position = GetPosition( (int)CurrentPiece.Position.x + (int)ghostOffset.x, (int)CurrentPiece.Position.y + (int)ghostOffset.y ) + new Vector3( GridSize / 2f, 0, -GridSize / 2f ); ;
+		LastGhostOffset -= new Vector2( 0, 1 );
 		GhostPiece.SetRotation( CurrentPiece.PieceRotation, true );
 	}
 
