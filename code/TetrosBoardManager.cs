@@ -281,7 +281,7 @@ public sealed class TetrosBoardManager : Component
 		PlaceCurrentPiece();
 		LastUpdate = GetWaitTime() / 4f * 3f;
 
-		NudgeBoard( new Vector2( 0, -0.5f ) );
+		NudgeBoard( new Vector2( 0, -0.33f ) );
 
 		UpdateGhost();
 	}
@@ -345,6 +345,7 @@ public sealed class TetrosBoardManager : Component
 
 	bool CheckCurrentPieceCollision( Vector2 offset = default )
 	{
+		if ( !CurrentPiece.IsValid() ) return true;
 		var piece = TetrosShapes.GetShape( CurrentPiece.Type, CurrentPiece.PieceRotation );
 		var grid = piece.GetGrid();
 		var pos = CurrentPiece.Position + offset;

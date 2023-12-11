@@ -757,7 +757,7 @@
               "__enabled": true,
               "BodyGroups": 18446744073709551615,
               "MaterialOverride": "materials/glowing.vmat",
-              "Model": "models/board.vmdl",
+              "Model": "models/board_curved.vmdl",
               "ShouldCastShadows": false,
               "Tint": "1,1,1,1"
             },
@@ -774,7 +774,7 @@
             {
               "Id": "7da5d2ea-3d22-4941-a439-07dbdf0c258e",
               "Name": "Blocks",
-              "Position": "-320,607.9999,-0.0001449584",
+              "Position": "-320,607.9999,-0.0002899168",
               "Rotation": "-0.7071071,0,0,0.7071065",
               "Enabled": true
             }
