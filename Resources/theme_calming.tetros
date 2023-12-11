@@ -1,0 +1,14 @@
+{
+  "BlockModel": "models/block.vmdl",
+  "BoardModel": "models/board_curved.vmdl",
+  "MoveLeftSound": "tetros_voice_move_left",
+  "MoveRightSound": "tetros_voice_move_right",
+  "MoveDownSound": "",
+  "RotateLeftSound": "tetros_voice_rotate_left",
+  "RotateRightSound": "tetros_voice_rotate_right",
+  "PlaceSound": "tetros_voice_place",
+  "LineSound": "tetros_voice_line",
+  "TetrosSound": "tetros_voice_tetros",
+  "HoldSound": "tetros_voice_hold",
+  "__references": []
+}

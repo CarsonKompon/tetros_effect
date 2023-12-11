@@ -489,7 +489,7 @@ public sealed class TetrosBoardManager : Component
 			}
 		}
 		JustHeld = false;
-		PlaySound( "tetros_place" );
+		PlaySound( "tetros_voice_place" );
 		CurrentPiece.GameObject.Destroy();
 		CurrentPiece = null;
 
