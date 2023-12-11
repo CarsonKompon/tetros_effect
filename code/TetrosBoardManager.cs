@@ -289,10 +289,48 @@ public sealed class TetrosBoardManager : Component
 		CurrentPiece.PieceRotation += dir;
 		while ( CurrentPiece.PieceRotation < 0 ) CurrentPiece.PieceRotation += 4;
 		CurrentPiece.PieceRotation %= 4;
+
+		// Check if colliding after we rotate
 		if ( CheckCurrentPieceCollision() )
 		{
-			CurrentPiece.PieceRotation = prevRot;
+			// If we are colliding, try nudging the piece to the left or right
+			if ( CurrentPiece.Position.x < 6 )
+			{
+				CurrentPiece.Position += new Vector2( 1, 0 );
+				if ( !CheckCurrentPieceCollision() )
+				{
+					// We can rotate if we move to the right
+					Sound.Play( "tetros_move" );
+				}
+				else
+				{
+					// We can't rotate, so move back
+					CurrentPiece.Position -= new Vector2( 1, 0 );
+					CurrentPiece.PieceRotation = prevRot;
+				}
+			}
+			else if ( CurrentPiece.Position.x > 6 )
+			{
+				CurrentPiece.Position -= new Vector2( 1, 0 );
+				if ( !CheckCurrentPieceCollision() )
+				{
+					// We can rotate if we move to the left
+					Sound.Play( "tetros_move" );
+				}
+				else
+				{
+					// We can't rotate, so move back
+					CurrentPiece.Position += new Vector2( 1, 0 );
+					CurrentPiece.PieceRotation = prevRot;
+				}
+			}
+			else
+			{
+				// We can't rotate, so move back
+				CurrentPiece.PieceRotation = prevRot;
+			}
 		}
+
 		LastUpdate /= 2f;
 		Sound.Play( "tetros_rotate" );
 
