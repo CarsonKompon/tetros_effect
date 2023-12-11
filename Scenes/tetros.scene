@@ -52,6 +52,12 @@
               "__enabled": true,
               "Board": null,
               "Container": "0bd267c6-40e8-4957-b620-3b8eb73dd26e",
+              "CustomPieceRotations": [
+                0,
+                90,
+                0,
+                90
+              ],
               "PieceRotation": 0,
               "Position": "5,-2",
               "Type": "Z"
@@ -145,6 +151,7 @@
               "__enabled": true,
               "Board": null,
               "Container": "a00dcadb-882e-4105-9f02-e5f3decccc43",
+              "CustomPieceRotations": [],
               "PieceRotation": 0,
               "Position": "5,-2",
               "Type": "T"
@@ -238,6 +245,12 @@
               "__enabled": true,
               "Board": null,
               "Container": "269a387d-1a57-4a68-8c6b-f1a9519271d0",
+              "CustomPieceRotations": [
+                0,
+                90,
+                0,
+                90
+              ],
               "PieceRotation": 0,
               "Position": "5,-2",
               "Type": "S"
@@ -331,6 +344,7 @@
               "__enabled": true,
               "Board": null,
               "Container": "3089eb41-d375-42fe-af86-a9bb93cf7873",
+              "CustomPieceRotations": [],
               "PieceRotation": 0,
               "Position": "5,-2",
               "Type": "O"
@@ -423,6 +437,7 @@
               "__enabled": true,
               "Board": null,
               "Container": "5392126c-c4db-439c-b45c-fa02d7357791",
+              "CustomPieceRotations": [],
               "PieceRotation": 0,
               "Position": "5,-2",
               "Type": "L"
@@ -516,6 +531,7 @@
               "__enabled": true,
               "Board": null,
               "Container": "62b855e6-7caa-44a1-ae38-7c6fdb59e6f1",
+              "CustomPieceRotations": [],
               "PieceRotation": 0,
               "Position": "5,-2",
               "Type": "J"
@@ -609,6 +625,12 @@
               "__enabled": true,
               "Board": null,
               "Container": "e2d24987-db59-40c5-9e2b-aded74eb622e",
+              "CustomPieceRotations": [
+                0,
+                90,
+                0,
+                90
+              ],
               "PieceRotation": 0,
               "Position": "5,-2",
               "Type": "I"

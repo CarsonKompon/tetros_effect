@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
 using Sandbox.UI;
@@ -15,11 +16,19 @@ public class TetrosPiece : Component
     [Property] public Vector2 Position { get; set; } = new Vector2( 5, -2 );
     [Property] public int PieceRotation { get; set; } = 0;
 
+    [Property] public List<float> CustomPieceRotations { get; set; } = new List<float>();
+
     protected override void OnUpdate()
     {
         // Rotate
         var lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 25 );
-        Container.Transform.Rotation = Rotation.Lerp( Container.Transform.Rotation, Rotation.From( new Angles( PieceRotation * 90f, 0, 0 ) ), lerp );
+        var customAngle = PieceRotation * 90f;
+        Log.Info( $"rot: {PieceRotation}: {customAngle}" );
+        if ( CustomPieceRotations.Count > PieceRotation && CustomPieceRotations[PieceRotation] != -1 )
+        {
+            customAngle = CustomPieceRotations[PieceRotation];
+        }
+        Container.Transform.Rotation = Rotation.Lerp( Container.Transform.Rotation, Rotation.From( new Angles( customAngle, 0, 0 ) ), lerp );
 
         // Lerp to position
         lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 15 );
@@ -55,10 +64,10 @@ public class TetrosShape
 public static class TetrosShapes
 {
     public static readonly TetrosShape[] I = new TetrosShape[4] {
-        new TetrosShape {Blocks = new int[4] {4,5,6,7}},
-        new TetrosShape {Blocks = new int[4] {2,6,10,14}},
         new TetrosShape {Blocks = new int[4] {8,9,10,11}},
-        new TetrosShape {Blocks = new int[4] {1,5,9,13}}
+        new TetrosShape {Blocks = new int[4] {1,5,9,13}},
+        new TetrosShape {Blocks = new int[4] {4,5,6,7}},
+        new TetrosShape {Blocks = new int[4] {2,6,10,14}}
     };
 
     public static readonly TetrosShape[] O = new TetrosShape[4] {
