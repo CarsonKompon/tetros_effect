@@ -25,8 +25,9 @@ public class TetrosSettings
     public float SfxVolume { get; set; } = 0.5f;
     public int Theme { get; set; } = 0;
     public bool ShowGhost { get; set; } = true;
-    public bool ShowNext { get; set; } = true;
+    public int NextBlocksShown { get; set; } = 4;
     public bool AllowHold { get; set; } = true;
+    public bool BoardNudging { get; set; } = true;
     public bool ShowParticles { get; set; } = true;
 
     void Init()

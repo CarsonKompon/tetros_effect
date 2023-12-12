@@ -50,9 +50,14 @@ TetrosSettingsMenu
 				width: 100%;
 			}
 
-			slidercontrol .inner .track .thumb .value-tooltip .label
+			slidercontrol
 			{
-				border-radius: 0px;
+				max-width: 800px;
+
+				.inner .track .thumb .value-tooltip .label
+				{
+					border-radius: 0px;
+				}
 			}
 		}
 	}

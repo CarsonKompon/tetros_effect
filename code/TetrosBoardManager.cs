@@ -17,6 +17,7 @@ public sealed class TetrosBoardManager : Component
 	[Property] public int Width { get; set; } = 10;
 	[Property] public int Height { get; set; } = 20;
 	[Property] public float GridSize { get; set; } = 64f;
+	[Property] public int QueueShown { get; set; } = 4;
 	[Property] public int QueueLength { get; set; } = 10;
 
 	// Public Game Variables
@@ -102,7 +103,7 @@ public sealed class TetrosBoardManager : Component
 		{
 			HardDrop();
 		}
-		else if ( Input.Pressed( "Hold" ) )
+		else if ( Input.Pressed( "Hold" ) && TetrosSettings.Instance.AllowHold )
 		{
 			Hold();
 		}
@@ -159,10 +160,11 @@ public sealed class TetrosBoardManager : Component
 		}
 
 		// Set music volume
+		var volume = TetrosSettings.Instance.MusicVolume;
 		var slowMusic = SlowMusic;
-		slowMusic.Volume = MusicTimer > 0 ? 0f : 1f;
+		slowMusic.Volume = (MusicTimer > 0 ? 0f : 1f) * volume;
 		var fastMusic = FastMusic;
-		fastMusic.Volume = MusicTimer > 0 ? 1f : 0f;
+		fastMusic.Volume = (MusicTimer > 0 ? 1f : 0f) * volume;
 	}
 
 	void UpdateNextPieces()
@@ -173,7 +175,7 @@ public sealed class TetrosBoardManager : Component
 		}
 		QueuePieces.Clear();
 
-		int am = Math.Min( QueueLength, 4 );
+		int am = Math.Min( QueueLength, QueueShown );
 		for ( int i = 0; i < am; i++ )
 		{
 			var piece = SpawnPiece( Queue[i], false );
@@ -364,9 +366,14 @@ public sealed class TetrosBoardManager : Component
 				CurrentPiece.Move( new Vector2( 1, 0 ) );
 				if ( CheckCurrentPieceCollision() )
 				{
-					// We can't rotate, so move back
-					CurrentPiece.Move( new Vector2( -1, 0 ) );
-					CurrentPiece.PieceRotation = prevRot;
+					// See if we can move one more time
+					CurrentPiece.Move( new Vector2( 1, 0 ) );
+					if ( CheckCurrentPieceCollision() )
+					{
+						// We can't rotate, so move back
+						CurrentPiece.Move( new Vector2( -2, 0 ) );
+						CurrentPiece.PieceRotation = prevRot;
+					}
 				}
 			}
 			else if ( CurrentPiece.Position.x > 6 )
@@ -457,7 +464,7 @@ public sealed class TetrosBoardManager : Component
 			GhostPiece = null;
 		}
 
-		if ( !GhostPiece.IsValid() )
+		if ( !GhostPiece.IsValid() && TetrosSettings.Instance.ShowGhost )
 		{
 			GhostPiece = SpawnPiece( CurrentPiece.Type, false );
 			foreach ( var block in GhostPiece.Container.Children )
@@ -473,7 +480,7 @@ public sealed class TetrosBoardManager : Component
 			LastGhostOffset += new Vector2( 0, 1 );
 		}
 		LastGhostOffset -= new Vector2( 0, 1 );
-		GhostPiece.SetRotation( CurrentPiece.PieceRotation, true );
+		GhostPiece?.SetRotation( CurrentPiece.PieceRotation, true );
 	}
 
 	bool CheckCurrentPieceCollision( Vector2 offset = default )
@@ -667,6 +674,7 @@ public sealed class TetrosBoardManager : Component
 
 	public void SpawnParticleBurst( Vector2 position, Color color )
 	{
+		if ( !TetrosSettings.Instance.ShowParticles ) return;
 		var particle = SceneUtility.Instantiate( GameManager.ParticleBurstPrefab, GetPosition( (int)position.x, (int)position.y ) );
 		particle.SetParent( GameObject );
 		particle.Enabled = true;
@@ -676,6 +684,7 @@ public sealed class TetrosBoardManager : Component
 
 	public void NudgeBoard( Vector2 direction )
 	{
+		if ( !TetrosSettings.Instance.BoardNudging ) return;
 		Board.Transform.Position += new Vector3( direction.x * GridSize, 0, direction.y * GridSize );
 	}
 
@@ -697,7 +706,8 @@ public sealed class TetrosBoardManager : Component
 	SoundHandle PlaySound( string soundName )
 	{
 		if ( string.IsNullOrEmpty( soundName ) ) return new SoundHandle();
-		var sound = Sound.Play( soundName, Camera.Transform.Position );
+		var sound = Sound.Play( soundName, Camera.Transform.Position + Camera.Transform.Rotation.Forward * 25f + Camera.Transform.Rotation.Left * 5f );
+		sound.Volume = TetrosSettings.Instance.SfxVolume;
 		return sound;
 	}
 

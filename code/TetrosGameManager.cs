@@ -29,6 +29,7 @@ public sealed class TetrosGameManager : Component
 			foreach ( var board in Boards )
 			{
 				board.Theme = TetrosTheme.Find( TetrosSettings.Instance.Theme );
+				board.QueueShown = TetrosSettings.Instance.NextBlocksShown;
 			}
 		}
 	}

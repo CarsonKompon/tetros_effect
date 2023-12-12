@@ -9,14 +9,14 @@ TetrosThemeSelector
 
         &:hover
         {
-            transform: scale(1.1);
-            sound-in: tetros_menu_hover;
+            transform: scale(1.25);
+            cursor: pointer;
         }
 
         &:active
         {
             transform: scale(0.9);
-            sound-in: tetros_menu_back;
+            sound-in: tetros_menu_select;
         }
     }
 }

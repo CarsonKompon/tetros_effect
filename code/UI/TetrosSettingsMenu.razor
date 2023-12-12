@@ -20,6 +20,26 @@
 			<label>Theme</label>
 			<TetrosThemeSelector @ref="ThemeSelector" />
 		</div>
+		<div class="setting">
+			<label>Next Blocks Shown</label>
+			<SliderControl Value:bind="@TetrosSettings.Instance.NextBlocksShown" Min=@(0) Max=@(4) Step=@(1) />
+		</div>
+		<div class="setting">
+			<label>Show Ghost</label>
+			<SwitchControl Value:bind="@TetrosSettings.Instance.ShowGhost" />
+		</div>
+		<div class="setting">
+			<label>Allow Hold</label>
+			<SwitchControl Value:bind="@TetrosSettings.Instance.AllowHold" />
+		</div>
+		<div class="setting">
+			<label>Board Nudging</label>
+			<SwitchControl Value:bind="@TetrosSettings.Instance.BoardNudging" />
+		</div>
+		<div class="setting">
+			<label>Line Clear Effects</label>
+			<SwitchControl Value:bind="@TetrosSettings.Instance.ShowParticles" />
+		</div>
 	</div>
 	<button class="btn" onclick=@Back>Back</button>
 </root>
