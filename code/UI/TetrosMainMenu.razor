@@ -7,13 +7,14 @@
 <root>
 	<div class="left">
 		<img class="logo" src="/ui/tetros_effect_logo_glowing.png" />
+		<p>by Carson Kompon</p>
 	</div>
 
 	<div class="right">
 		<div class="options">
-			<button class="btn btn-primary" onclick="StartGame()">Start Game</button>
-			<button class="btn btn-primary" onclick="ShowOptions()">Options</button>
-			<button class="btn btn-primary" onclick="ShowCredits()">Credits</button>
+			<button class="btn btn-primary" onclick=@StartGame>Start Game</button>
+			<button class="btn btn-primary" onclick=@Settings>Settings</button>
+			<button class="btn btn-primary" onclick=@Quit>Quit</button>
 		</div>
 	</div>
 </root>
@@ -21,6 +22,20 @@
 @code
 {
 
+	void StartGame()
+	{
+
+	}
+
+	void Settings()
+	{
+
+	}
+
+	void Quit()
+	{
+		
+	}
 	
 	protected override int BuildHash() => System.HashCode.Combine( "" );
 }

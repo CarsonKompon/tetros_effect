@@ -5,13 +5,14 @@ TetrosMainMenu
 	left: 0;
 	right: 0;
 	bottom: 0;
-	//background-color: #161616;
+	color: white;
+	pointer-events: all;
 
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 
-	font-family: Poppins;
+	font-family: 04b08;
 	gap: 64px;
 
 	.left
@@ -26,12 +27,17 @@ TetrosMainMenu
 			animation-duration: 10s;
 			animation-iteration-count: infinite;
 		}
+
+		p
+		{
+			font-size: 22px;
+		}
 	
 	}
 
 	.right
 	{
-		width: 30%;
+		width: 33%;
 
 		flex-direction: column;
 		justify-content: center;
@@ -42,15 +48,24 @@ TetrosMainMenu
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			gap: 16px;
+			font-size: 72px;
+			gap: 32px;
 
 			button
 			{
-
+				transform: scale(1);
+				transition: all 0.05s ease-in-out;
 
 				&:hover
 				{
-					
+					transform: scale(1.1);
+					sound-in: tetros_menu_hover;
+				}
+
+				&:active
+				{
+					transform: scale(0.9);
+					sound-in: tetros_menu_select;
 				}
 			}
 		}
