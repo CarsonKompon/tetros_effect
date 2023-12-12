@@ -58,7 +58,7 @@ public sealed class TetrosBoardManager : Component
 
 	protected override void OnUpdate()
 	{
-		if ( !IsPlaying && !IsProxy ) return;
+		if ( !IsPlaying ) return;
 
 		GameTime += Time.Delta;
 
@@ -247,6 +247,7 @@ public sealed class TetrosBoardManager : Component
 
 	public async void EndGame()
 	{
+		if ( !IsPlaying ) return;
 		Sandbox.Services.Stats.Increment( "tetros_lines", LinesCleared );
 		Sandbox.Services.Stats.Increment( "tetros_games", 1 );
 		Sandbox.Services.Stats.SetValue( "tetros_highscore", Score );
@@ -255,7 +256,7 @@ public sealed class TetrosBoardManager : Component
 		SlowMusic.Stop( true );
 		FastMusic.Stop( true );
 
-		await Task.DelaySeconds( 1f );
+		await GameTask.DelaySeconds( 1f );
 
 		ResetGame();
 
