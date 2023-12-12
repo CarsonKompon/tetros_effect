@@ -28,11 +28,18 @@
 	public bool AllVisible = true;
 	public bool IsVisible = true;
 	float Alpha = 1.0f;
+
+	[Property] MusicVolumeOverride MainMenuMusic { get; set; }
+	[Property] string SingleplayerSceneName { get; set; }
 	
+
+	float StartTimer = -1f;
 
 	void StartGame()
 	{
 		IsVisible = false;
+
+		StartTimer = 0f;
 	}
 
 	void Settings()
@@ -81,6 +88,17 @@
 			CoverPanel.Style.Opacity = 1f - Alpha;
 		}
 		SetClass("no-interact", Alpha < 1f);
+
+		MainMenuMusic.Volume = IsVisible ? 1f : 0f;
+
+		if(StartTimer >= 0f)
+		{
+			StartTimer += Time.Delta;
+			if(StartTimer >= 1f)
+			{
+				GameManager.ActiveScene.LoadFromFile("/scenes/" + SingleplayerSceneName + ".scene");
+			}
+		}
 	}
 	
 	protected override int BuildHash() => System.HashCode.Combine( "" );

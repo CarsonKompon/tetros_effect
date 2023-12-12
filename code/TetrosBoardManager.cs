@@ -52,6 +52,7 @@ public sealed class TetrosBoardManager : Component
 	protected override void OnStart()
 	{
 		AnchorPosition = Board.Transform.Position;
+
 		StartGame();
 	}
 

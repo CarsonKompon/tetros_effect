@@ -20,4 +20,17 @@ public sealed class TetrosGameManager : Component
 
 	[Property] public GameObject ParticleBurstPrefab { get; set; }
 
+	[Property] public bool IsSingleplayer { get; set; } = true;
+
+	protected override void OnAwake()
+	{
+		if ( IsSingleplayer )
+		{
+			foreach ( var board in Boards )
+			{
+				board.Theme = TetrosTheme.Find( TetrosSettings.Instance.Theme );
+			}
+		}
+	}
+
 }

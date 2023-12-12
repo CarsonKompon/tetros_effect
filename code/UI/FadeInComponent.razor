@@ -1,0 +1,28 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+</root>
+
+@code
+{
+
+	[Property] public Color FadeColor { get; set; } = Color.Black;
+	[Property] public float FadeTime { get; set; } = 0.5f;
+	float Alpha = 1f;
+
+	protected override void OnUpdate()
+	{
+		Alpha -= Time.Delta / FadeTime;
+		if (Alpha <= 0f)
+		{
+			Alpha = 0f;
+			Destroy();
+			return;
+		}
+
+		Panel.Style.Opacity = Alpha;
+		Panel.Style.BackgroundColor = FadeColor;
+	}
+}

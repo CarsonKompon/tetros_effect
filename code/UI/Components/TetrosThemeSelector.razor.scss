@@ -1,5 +1,22 @@
 TetrosThemeSelector
 {
     gap: 16px;
-    
+
+    .arrow
+    {
+        transform: scale(1);
+        transition: all 0.05s ease-in-out;
+
+        &:hover
+        {
+            transform: scale(1.1);
+            sound-in: tetros_menu_hover;
+        }
+
+        &:active
+        {
+            transform: scale(0.9);
+            sound-in: tetros_menu_back;
+        }
+    }
 }

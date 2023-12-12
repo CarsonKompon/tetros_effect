@@ -82,7 +82,7 @@
     },
     {
       "Id": "144f10c6-a23d-47ac-ae3f-54b0f180c699",
-      "Name": "Screen",
+      "Name": "UI",
       "Position": "242.9706,74.87611,-38.81043",
       "Enabled": true,
       "Components": [
@@ -96,7 +96,9 @@
         },
         {
           "__type": "TetrosMainMenu",
-          "__enabled": true
+          "__enabled": true,
+          "MainMenuMusic": "4cf24675-250c-43a5-881e-7c0402b190c7",
+          "SingleplayerSceneName": "tetros"
         },
         {
           "__type": "TetrosSettingsMenu",

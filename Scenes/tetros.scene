@@ -12,6 +12,7 @@
           "Boards": [
             "13acaa9e-a456-4e92-b479-340f470ddd77"
           ],
+          "IsSingleplayer": true,
           "ParticleBurstPrefab": "cbf982a7-b092-4ed7-aeb2-20f2211efc30",
           "PieceIPrefab": "a653709a-edcb-4060-9f7f-10d2b6caf69b",
           "PieceJPrefab": "6400b76d-a251-4c3b-aaeb-a55b03cc2ea8",
@@ -44,8 +45,13 @@
         },
         {
           "__type": "TetrosPauseMenu",
+          "__enabled": true
+        },
+        {
+          "__type": "FadeInComponent",
           "__enabled": true,
-          "MyStringValue": "Hello World!"
+          "FadeColor": "0.08627,0.08627,0.08627,1",
+          "FadeTime": 1
         }
       ]
     },
@@ -1170,13 +1176,13 @@
     }
   ],
   "SceneProperties": {
-    "UseFixedUpdate": true,
-    "ThreadedAnimation": true,
-    "TimeScale": 1,
-    "MaxFixedUpdates": 5,
     "FixedUpdateFrequency": 50,
     "Lerping": true,
-    "NetworkFrequency": 60
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 60,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true
   },
   "Title": "tetros",
   "Description": "",
