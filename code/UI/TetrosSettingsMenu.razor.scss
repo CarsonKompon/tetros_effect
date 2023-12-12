@@ -28,6 +28,7 @@ TetrosSettingsMenu
 		justify-content: center;
 		align-items: center;
 		gap: 32px;
+		opacity: 1;
 
 		width: 60%;
 
@@ -60,6 +61,81 @@ TetrosSettingsMenu
 				}
 			}
 		}
+
+		button
+		{
+			font-size: 32px;
+		}
+	}
+
+	.controls
+	{
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 40%;
+
+		.category
+		{
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 32px;
+			width: 100%;
+
+			h2
+			{
+				font-size: 32px;
+			}
+
+			.form
+			{
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				gap: 16px;
+
+				FormGroup
+				{
+					flex-direction: row;
+					justify-content: space-between;
+					align-items: center;
+					gap: 32px;
+					width: 100%;
+				}
+			}
+		}
+
+		keybind
+		{
+			background-color: #ffffff05;
+			padding: 10px;
+			font-size: 13px;
+			text-align: center;
+			justify-content: center;
+			align-items: center;
+			width: 200px;
+			cursor: pointer;
+			color: #aaa;
+
+			&.with-highlight
+			{
+				color: #eee;
+			}
+
+			&:hover
+			{
+				background-color: #ffffff11;
+			}
+
+			&.active
+			{
+				background-color: #fff;
+				color: #aaa;
+			}
+		}
 	}
 
 	button
@@ -87,6 +163,21 @@ TetrosSettingsMenu
 		*
 		{
 			pointer-events: none;
+		}
+	}
+
+	&.in-controls
+	{
+		.settings
+		{
+			opacity: 0;
+			height: 0px;
+		}
+
+		.controls
+		{
+			display: flex;
+			opacity: 1;
 		}
 	}
 

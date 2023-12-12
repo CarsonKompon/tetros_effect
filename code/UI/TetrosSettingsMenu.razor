@@ -1,6 +1,9 @@
 @using System;
+@using System.Collections.Generic;
+@using System.Linq;
 @using Sandbox;
 @using Sandbox.UI;
+@using Sandbox.UI.Construct;
 @inherits PanelComponent
 
 @namespace TetrosEffect
@@ -40,7 +43,30 @@
 			<label>Line Clear Effects</label>
 			<SwitchControl Value:bind="@TetrosSettings.Instance.ShowParticles" />
 		</div>
+		<button class="btn" onclick=@ControlsPage>Controls</button>
 	</div>
+	<div class="controls">
+
+        @foreach ( var group in Game.Menu.InputSettings.Actions.GroupBy( x => x.GroupName ) )
+        {
+            <div class="category">
+                <h2>@group.Key</h2>
+
+                <div class="form">
+                @foreach ( InputAction action in group )
+                {
+                    <FormGroup>
+                        <Label>@action.Name</Label>
+                        <Control>
+                            <KeyBind Game="@Game.Menu" Action=@action class="glass with-padding with-grow with-click"></KeyBind>
+                        </Control>
+                    </FormGroup>
+                }
+                </div>
+            </div>
+        }
+    </div>
+
 	<button class="btn" onclick=@Back>Back</button>
 </root>
 
@@ -48,11 +74,23 @@
 {
 	public bool IsVisible = false;
 	float Alpha = 0f;
+	bool InControls = false;
 
 	TetrosThemeSelector ThemeSelector;
 
+	void ControlsPage()
+	{
+		InControls = true;
+	}
+
 	void Back()
 	{
+		if(InControls)
+		{
+			InControls = false;
+			return;
+		}
+
 		var mainMenu = Scene.Components.GetInDescendants<TetrosMainMenu>();
 		if(mainMenu is not null)
 		{
@@ -81,7 +119,8 @@
 
 		Panel.Style.Opacity = Alpha;
 		SetClass("no-interact", Alpha < 1f);
+		SetClass("in-controls", InControls);
 	}
 
-	protected override int BuildHash() => System.HashCode.Combine( "" );
+	protected override int BuildHash() => System.HashCode.Combine( InControls );
 }
