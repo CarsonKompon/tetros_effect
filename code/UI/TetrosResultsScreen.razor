@@ -1,0 +1,35 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+@namespace TetrosEffect
+
+<root>
+	<h1>Game Over</h1>
+	<div class="options">
+		<button class="btn" onclick=@Retry>Play Again</button>
+		<button class="btn" onclick=@ReturnToMainMenu>Return to Main Menu</button>
+	</div>
+</root>
+
+@code
+{
+
+	[Property] public TetrosBoardManager Board { get; set; }
+
+	void Retry()
+	{
+		Board.StartGame();
+	}
+
+	void ReturnToMainMenu()
+	{
+		var fadeOut = GameObject.Components.Create<FadeOutComponent>();
+		fadeOut.FadeColor = Color.FromRgb(0x161616);
+		fadeOut.OnFadeOut += () => {
+			GameManager.ActiveScene.LoadFromFile("scenes/mainmenu.scene");
+		};
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( Board );
+}

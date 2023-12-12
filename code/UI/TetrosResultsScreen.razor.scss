@@ -1,29 +1,26 @@
-TetrosPauseMenu
+TetrosResultsScreen
 {
 	position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(black, 0.6);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: all;
 
-    flex-direction: column;
-    pointer-events: all;
-    align-items: center;
-    justify-content: center;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-    color: white;
-    font-family: 04b08;
-    gap: 64px;
+	color: white;
+	font-family: 04b08;
+	gap: 64px;
 
-    z-index: 999;
+	h1
+	{
+		font-size: 48px;
+	}
 
-    h1
-    {
-        font-size: 64px;
-    }
-
-    .options
+	.options
     {
         flex-direction: column;
         justify-content: center;

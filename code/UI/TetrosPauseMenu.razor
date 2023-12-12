@@ -2,14 +2,57 @@
 @using Sandbox.UI;
 @inherits PanelComponent
 
+@namespace TetrosEffect
+
 <root>
-	<div class="title"></div>
+	<h1>Paused</h1>
+	<div class="options">
+		<button class="btn resume" onclick=@Resume>Resume</button>
+		<button class="btn" onclick=@Settings>Settings</button>
+		<button class="btn main-menu" onclick=@ReturnToMainMenu>Return to Main Menu</button>
+	</div>
 </root>
 
 @code
 {
 
-	public bool IsVisible = false;
-	
+	public bool IsOpen = false;
+	public bool IsVisible = true;
+
+	protected override void OnUpdate()
+	{
+		if(Input.EscapePressed)
+		{
+			if(!IsOpen)
+			{
+				IsOpen = true;
+			}
+			else if(IsVisible)
+			{
+				IsOpen = false;
+			}
+		}
+
+		Scene.TimeScale = IsOpen ? 0 : 1;
+		Panel.Style.Opacity = IsOpen ? 1 : 0;
+
+		SetClass("no-interact", !IsOpen || !IsVisible);
+	}
+
+	void Resume()
+	{
+		IsOpen = false;
+	}
+
+	void Settings()
+	{
+
+	}
+
+	void ReturnToMainMenu()
+	{
+
+	}
+
 	protected override int BuildHash() => System.HashCode.Combine( "" );
 }

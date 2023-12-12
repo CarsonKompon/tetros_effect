@@ -116,7 +116,7 @@ public sealed class TetrosBoardManager : Component
 			}
 			else if ( Input.Down( "MoveLeft" ) && LeftTimer > 0.2f )
 			{
-				LeftTimer = 0.1f;
+				LeftTimer = 0.15f;
 				Move( -1 );
 			}
 
@@ -127,7 +127,7 @@ public sealed class TetrosBoardManager : Component
 			}
 			else if ( Input.Down( "MoveRight" ) && RightTimer > 0.2f )
 			{
-				RightTimer = 0.1f;
+				RightTimer = 0.15f;
 				Move( 1 );
 			}
 
@@ -242,9 +242,15 @@ public sealed class TetrosBoardManager : Component
 
 		IsPlaying = true;
 		HighScore = (long)Sandbox.Services.Stats.GetLocalPlayerStats( Game.Menu.Package.FullIdent ).Get( "tetros_highscore" ).Value;
+
+		var allResults = GameManager.UIObject.Components.GetAll<TetrosResultsScreen>();
+		for ( int i = 0; i < allResults.Count(); i++ )
+		{
+			allResults.ElementAt( i ).Destroy();
+		}
 	}
 
-	public async void EndGame()
+	public void EndGame()
 	{
 		if ( !IsPlaying ) return;
 		Sandbox.Services.Stats.Increment( "tetros_lines", LinesCleared );
@@ -252,12 +258,8 @@ public sealed class TetrosBoardManager : Component
 		Sandbox.Services.Stats.SetValue( "tetros_highscore", Score );
 		IsPlaying = false;
 
-		SlowMusic.Stop( true );
-		FastMusic.Stop( true );
-
-		await GameTask.DelaySeconds( 1f );
-
-		ResetGame();
+		CurrentPiece?.GameObject.Destroy();
+		GhostPiece?.GameObject.Destroy();
 
 		foreach ( var block in Blocks )
 		{
@@ -266,6 +268,8 @@ public sealed class TetrosBoardManager : Component
 		}
 		Blocks.Clear();
 
+		var results = GameManager.UIObject.Components.Create<TetrosResultsScreen>();
+		results.Board = this;
 	}
 
 	TetrosPiece SpawnPiece( PieceType pieceType, bool inBoard )

@@ -20,7 +20,8 @@
           "PieceOPrefab": "37772237-eaae-4f7b-920c-67a7c905c769",
           "PieceSPrefab": "6d10dff7-5241-40aa-b6f3-580f913cd931",
           "PieceTPrefab": "30e39db8-b30e-4875-910a-5b69d8fc7aa3",
-          "PieceZPrefab": "edba306f-b5e9-4405-b47c-a5f79f54b5fb"
+          "PieceZPrefab": "edba306f-b5e9-4405-b47c-a5f79f54b5fb",
+          "UIObject": "040526dd-f5a6-4989-9706-6341e56c747d"
         }
       ]
     },
@@ -801,6 +802,7 @@
           "GridSize": 64,
           "Height": 20,
           "QueueLength": 10,
+          "QueueShown": 4,
           "Theme": "resources/theme_piano.tetros",
           "Width": 10
         }

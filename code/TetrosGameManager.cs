@@ -8,6 +8,7 @@ namespace TetrosEffect;
 public sealed class TetrosGameManager : Component
 {
 	[Property] public List<TetrosBoardManager> Boards { get; set; }
+	[Property] public GameObject UIObject { get; set; }
 
 	[Property] public GameObject BlockPrefab { get; set; }
 	[Property] public GameObject PieceJPrefab { get; set; }

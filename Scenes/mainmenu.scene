@@ -103,6 +103,12 @@
         {
           "__type": "TetrosSettingsMenu",
           "__enabled": true
+        },
+        {
+          "__type": "FadeInComponent",
+          "__enabled": true,
+          "FadeColor": "0.08627,0.08627,0.08627,1",
+          "FadeTime": 0.5
         }
       ]
     },

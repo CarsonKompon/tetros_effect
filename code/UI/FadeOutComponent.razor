@@ -1,3 +1,4 @@
+@using System;
 @using Sandbox;
 @using Sandbox.UI;
 @inherits PanelComponent
@@ -12,14 +13,16 @@
 
 	[Property] public Color FadeColor { get; set; } = Color.Black;
 	[Property] public float FadeTime { get; set; } = 0.5f;
-	float Alpha = 1f;
+	[Property] public Action OnFadeOut { get; set; }
+	float Alpha = 0;
 
 	protected override void OnUpdate()
 	{
-		Alpha -= Time.Delta / FadeTime;
-		if (Alpha <= 0f)
+		Alpha += Time.Delta / FadeTime;
+		if (Alpha >= 1f)
 		{
-			Alpha = 0f;
+			Alpha = 1f;
+			OnFadeOut?.Invoke();
 			Destroy();
 			return;
 		}
