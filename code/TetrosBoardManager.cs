@@ -236,9 +236,6 @@ public sealed class TetrosBoardManager : Component
 	public void StartGame()
 	{
 		ResetGame();
-
-		SlowMusic = PlaySound( Theme.MusicSlow );
-		FastMusic = PlaySound( Theme.MusicFast );
 		Board.Components.Get<ModelRenderer>().Model = Model.Load( Theme.BoardModel );
 
 		IsPlaying = true;
@@ -336,7 +333,7 @@ public sealed class TetrosBoardManager : Component
 
 	public void Move( int dir )
 	{
-		if ( CurrentPiece is null ) return;
+		if ( !CurrentPiece.IsValid() ) return;
 		CurrentPiece.Move( new Vector2( dir, 0 ) );
 		if ( CheckCurrentPieceCollision() )
 		{

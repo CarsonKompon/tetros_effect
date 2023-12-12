@@ -1,0 +1,20 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+ 
+@namespace TetrosEffect
+
+<root>
+	<i>audiotrack</i>
+	<div class="playing">@Board.Theme.SongName</div>
+</root>
+
+@code
+{
+
+	[Property] public TetrosBoardManager Board { get; set; }
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( Board.Theme.SongName );
+}

@@ -4,6 +4,7 @@
   "BoardModel": "models/board_curved.vmdl",
   "MusicSlow": "tetros_music_calm_slow",
   "MusicFast": "tetros_music_calm_fast",
+  "SongName": "Carson Kompon - Beats To Play Tetros To",
   "MoveLeftSound": "tetros_voice_move_left",
   "MoveRightSound": "tetros_voice_move_right",
   "MoveDownSound": "",

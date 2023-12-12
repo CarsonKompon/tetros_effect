@@ -4,6 +4,7 @@
   "BoardModel": "models/board.vmdl",
   "MusicSlow": "tetros_music_retro_slow",
   "MusicFast": "tetros_music_retro_fast",
+  "SongName": "Carson Kompon - Korobeiniki Cover",
   "MoveLeftSound": "tetros_retro_move",
   "MoveRightSound": "tetros_retro_move",
   "MoveDownSound": "tetros_retro_move",

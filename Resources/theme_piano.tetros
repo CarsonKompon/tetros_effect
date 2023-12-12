@@ -1,0 +1,18 @@
+{
+  "Name": "Piano",
+  "BlockModel": "models/block.vmdl",
+  "BoardModel": "models/board_curved.vmdl",
+  "MusicSlow": "tetros_music_piano_slow",
+  "MusicFast": "tetros_music_piano_fast",
+  "SongName": "Carson Kompon - Blocky Maestro",
+  "MoveLeftSound": "tetros_piano_move_left",
+  "MoveRightSound": "tetros_piano_move_right",
+  "MoveDownSound": "",
+  "RotateLeftSound": "tetros_piano_rotate",
+  "RotateRightSound": "tetros_piano_rotate",
+  "PlaceSound": "tetros_piano_place",
+  "LineSound": "tetros_piano_line",
+  "TetrosSound": "tetros_piano_tetros",
+  "HoldSound": "tetros_piano_hold",
+  "__references": []
+}

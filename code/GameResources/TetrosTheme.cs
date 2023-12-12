@@ -18,6 +18,7 @@ public partial class TetrosTheme : GameResource
 
     public string MusicSlow { get; set; } = "tetros_music_slow";
     public string MusicFast { get; set; } = "tetros_music_fast";
+    public string SongName { get; set; } = "";
     public string MoveLeftSound { get; set; } = "tetros_move";
     public string MoveRightSound { get; set; } = "tetros_move";
     public string MoveDownSound { get; set; } = "tetros_move";
