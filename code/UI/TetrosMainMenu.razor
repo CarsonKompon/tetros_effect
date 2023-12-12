@@ -1,0 +1,26 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+@namespace TetrosEffect
+
+<root>
+	<div class="left">
+		<img class="logo" src="/ui/tetros_effect_logo_glowing.png" />
+	</div>
+
+	<div class="right">
+		<div class="options">
+			<button class="btn btn-primary" onclick="StartGame()">Start Game</button>
+			<button class="btn btn-primary" onclick="ShowOptions()">Options</button>
+			<button class="btn btn-primary" onclick="ShowCredits()">Credits</button>
+		</div>
+	</div>
+</root>
+
+@code
+{
+
+	
+	protected override int BuildHash() => System.HashCode.Combine( "" );
+}

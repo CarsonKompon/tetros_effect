@@ -26,7 +26,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/minimal.scene",
+    "StartupScene": "scenes/mainmenu.scene",
     "ProjectTemplate": null,
     "ControlModes": {
       "Keyboard": true,

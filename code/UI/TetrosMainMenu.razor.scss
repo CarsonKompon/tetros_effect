@@ -1,0 +1,73 @@
+TetrosMainMenu
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	//background-color: #161616;
+
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	font-family: Poppins;
+	gap: 64px;
+
+	.left
+	{
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.logo
+		{
+			animation-name: hue-rotate;
+			animation-duration: 10s;
+			animation-iteration-count: infinite;
+		}
+	
+	}
+
+	.right
+	{
+		width: 30%;
+
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.options
+		{
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 16px;
+
+			button
+			{
+
+
+				&:hover
+				{
+					
+				}
+			}
+		}
+	
+	}
+
+}
+
+@keyframes hue-rotate
+{
+	0%
+	{
+		filter: hue-rotate(0deg);
+	}
+
+	100%
+	{
+		filter: hue-rotate(360deg);
+	}
+}

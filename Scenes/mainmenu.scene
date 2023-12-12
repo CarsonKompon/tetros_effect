@@ -1,0 +1,108 @@
+{
+  "GameObjects": [
+    {
+      "Id": "352dcd47-07d6-4bc6-bd8a-4a8e1db87c7b",
+      "Name": "Camera",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "CameraComponent",
+          "__enabled": true,
+          "BackgroundColor": "0.08911,0.08911,0.08911,1",
+          "ClearFlags": "All",
+          "FieldOfView": 60,
+          "Orthographic": false,
+          "OrthographicHeight": 1204,
+          "RenderExcludeTags": "",
+          "RenderTags": "",
+          "TargetEye": "None",
+          "ZFar": 10000,
+          "ZNear": 10
+        },
+        {
+          "__type": "Bloom",
+          "__enabled": true,
+          "BloomColor": {
+            "color": [
+              {
+                "c": "1,1,1,1"
+              },
+              {
+                "t": 1,
+                "c": "1,1,1,1"
+              }
+            ]
+          },
+          "BloomCurve": [
+            {
+              "y": 0.5
+            },
+            {
+              "x": 1,
+              "y": 1
+            }
+          ],
+          "Mode": "Additive",
+          "Strength": 1,
+          "Threshold": 0.5,
+          "ThresholdWidth": 0
+        }
+      ]
+    },
+    {
+      "Id": "144f10c6-a23d-47ac-ae3f-54b0f180c699",
+      "Name": "Screen",
+      "Position": "242.9706,74.87611,-38.81043",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "ScreenPanel",
+          "__enabled": true,
+          "AutoScreenScale": true,
+          "Opacity": 1,
+          "Scale": 1,
+          "ZIndex": 100
+        },
+        {
+          "__type": "TetrosMainMenu",
+          "__enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "ff113e38-c1cc-4a3d-9aa6-20436d6da7cd",
+      "Name": "Object",
+      "Position": "641.562,-109.4091,51.66891",
+      "Rotation": "0.5624489,0,0,0.8268316",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Rotator",
+          "__enabled": true,
+          "Speed": "0.2311452,-0.4900932,-0.02044347,0.8402158"
+        }
+      ],
+      "Children": [
+        {
+          "Id": "e734405d-c6e5-4c55-a6dd-5a798cb1f42a",
+          "Name": "Block",
+          "Position": "-90.16599,-142.591,0.00004005432",
+          "Enabled": true,
+          "__Prefab": "prefabs/menu_block.prefab"
+        }
+      ]
+    }
+  ],
+  "SceneProperties": {
+    "FixedUpdateFrequency": 50,
+    "Lerping": true,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 60,
+    "ThreadedAnimation": true,
+    "TimeScale": 1,
+    "UseFixedUpdate": true
+  },
+  "Title": "mainmenu",
+  "Description": "",
+  "__references": []
+}
