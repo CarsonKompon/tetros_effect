@@ -1,4 +1,5 @@
 {
+  "Name": "Calm",
   "BlockModel": "models/block.vmdl",
   "BoardModel": "models/board_curved.vmdl",
   "MusicSlow": "tetros_music_calm_slow",

@@ -9,6 +9,8 @@ namespace Rhythm4K;
 [GameResource( "Tetros Theme", "tetros", "Describes a Tetros Effect Theme", Icon = "theme" )]
 public partial class TetrosTheme : GameResource
 {
+    public string Name { get; set; } = "Tetros Theme";
+
     [ResourceType( "vmdl" )]
     public string BlockModel { get; set; }
     [ResourceType( "vmdl" )]

@@ -239,6 +239,7 @@ public sealed class TetrosBoardManager : Component
 
 		SlowMusic = PlaySound( Theme.MusicSlow );
 		FastMusic = PlaySound( Theme.MusicFast );
+		Board.Components.Get<ModelRenderer>().Model = Model.Load( Theme.BoardModel );
 
 		IsPlaying = true;
 		HighScore = (long)Sandbox.Services.Stats.GetLocalPlayerStats( Game.Menu.Package.FullIdent ).Get( "tetros_highscore" ).Value;
@@ -290,6 +291,7 @@ public sealed class TetrosBoardManager : Component
 			foreach ( var child in piece.Container.Children )
 			{
 				var model = child.Components.Get<ModelRenderer>();
+				model.Model = Model.Load( Theme.BlockModel );
 				model.Tint = piece.Color;
 			}
 			return piece;
@@ -322,7 +324,11 @@ public sealed class TetrosBoardManager : Component
 		blockScript.Board = this;
 		blockScript.Position = position;
 		var blockRenderer = blockObject.Components.Get<ModelRenderer>();
-		if ( blockRenderer != null ) blockRenderer.Tint = color;
+		if ( blockRenderer != null )
+		{
+			blockRenderer.Model = Model.Load( Theme.BlockModel );
+			blockRenderer.Tint = color;
+		}
 		Blocks.Add( blockScript );
 		return blockObject;
 	}

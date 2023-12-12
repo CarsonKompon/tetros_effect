@@ -1,0 +1,17 @@
+{
+  "Name": "Retro",
+  "BlockModel": "models/block_squares.vmdl",
+  "BoardModel": "models/board.vmdl",
+  "MusicSlow": "tetros_music_retro_slow",
+  "MusicFast": "tetros_music_retro_fast",
+  "MoveLeftSound": "tetros_retro_move",
+  "MoveRightSound": "tetros_retro_move",
+  "MoveDownSound": "tetros_retro_move",
+  "RotateLeftSound": "tetros_retro_rotate",
+  "RotateRightSound": "tetros_retro_rotate",
+  "PlaceSound": "tetros_retro_place",
+  "LineSound": "tetros_retro_line",
+  "TetrosSound": "tetros_retro_tetros",
+  "HoldSound": "tetros_retro_hold",
+  "__references": []
+}
