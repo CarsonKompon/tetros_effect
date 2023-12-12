@@ -70,12 +70,12 @@
 	{
 		if(IsVisible && Alpha < 1f)
 		{
-			Alpha += Time.Delta;
+			Alpha += RealTime.Delta;
 			Alpha = Math.Clamp(Alpha, 0f, 1f);
 		}
 		else if(!IsVisible && Alpha > 0f)
 		{
-			Alpha -= Time.Delta;
+			Alpha -= RealTime.Delta;
 			Alpha = Math.Clamp(Alpha, 0f, 1f);
 		}
 

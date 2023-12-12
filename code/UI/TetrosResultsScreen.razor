@@ -24,6 +24,7 @@
 
 	void ReturnToMainMenu()
 	{
+		AddClass("no-interact");
 		var fadeOut = GameObject.Components.Create<FadeOutComponent>();
 		fadeOut.FadeColor = Color.FromRgb(0x161616);
 		fadeOut.OnFadeOut += () => {

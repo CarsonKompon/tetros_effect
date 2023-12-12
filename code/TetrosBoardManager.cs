@@ -715,6 +715,12 @@ public sealed class TetrosBoardManager : Component
 		return sound;
 	}
 
+	public void StopMusic()
+	{
+		SlowMusic.Stop( true );
+		FastMusic.Stop( true );
+	}
+
 	public float GetWaitTime()
 	{
 		switch ( Level )

@@ -46,6 +46,11 @@
         },
         {
           "__type": "TetrosPauseMenu",
+          "__enabled": true,
+          "IsOpen": false
+        },
+        {
+          "__type": "TetrosSettingsMenu",
           "__enabled": true
         },
         {

@@ -14,9 +14,16 @@ TetrosPauseMenu
 
     color: white;
     font-family: 04b08;
-    gap: 64px;
 
     z-index: 999;
+
+    .content
+    {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 64px;
+    }
 
     h1
     {

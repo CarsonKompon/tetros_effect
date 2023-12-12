@@ -16,7 +16,7 @@
 
 	protected override void OnUpdate()
 	{
-		Alpha -= Time.Delta / FadeTime;
+		Alpha -= RealTime.Delta / FadeTime;
 		if (Alpha <= 0f)
 		{
 			Alpha = 0f;
