@@ -540,7 +540,7 @@ public sealed class TetrosBoardManager : Component
 
 		if ( lines > 0 )
 		{
-			var sound = PlaySound( Theme.LineSound );
+			var sound = PlaySound( lines == 4 ? Theme.TetrosSound : Theme.LineSound );
 			sound.Pitch = 1f + (MathF.Max( 0, Combo ) * (1.0f / 12.0f));
 
 			Combo++;
@@ -557,7 +557,6 @@ public sealed class TetrosBoardManager : Component
 					break;
 				case 4:
 					Score += 800 * Level;
-					PlaySound( Theme.TetrosSound );
 					break;
 			}
 

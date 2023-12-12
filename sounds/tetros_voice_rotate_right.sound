@@ -1,10 +1,13 @@
 {
   "UI": false,
-  "Volume": "1.00,1.00,0",
+  "Volume": "0.10,0.10,0",
   "Pitch": "1.00,1.00,0",
   "Decibels": 70,
   "SelectionMode": "Random",
-  "Sounds": null,
+  "Sounds": [
+    "sounds/voices/voice_a3.vsnd",
+    "sounds/voices/voice_b3.vsnd"
+  ],
   "MaximumDistance": 1143.9335,
   "MinimumDistance": 57.196674,
   "__references": []
