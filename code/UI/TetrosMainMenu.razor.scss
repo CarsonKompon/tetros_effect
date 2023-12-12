@@ -15,6 +15,18 @@ TetrosMainMenu
 	font-family: 04b08;
 	gap: 64px;
 
+	.cover
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #161616;
+		opacity: 0;
+		z-index: 1;
+	}
+
 	.left
 	{
 		flex-direction: column;
@@ -55,6 +67,7 @@ TetrosMainMenu
 			{
 				transform: scale(1);
 				transition: all 0.05s ease-in-out;
+				cursor: pointer;
 
 				&:hover
 				{
@@ -66,10 +79,23 @@ TetrosMainMenu
 				{
 					transform: scale(0.9);
 					sound-in: tetros_menu_select;
+
+					&.play
+					{
+						sound-in: tetros_menu_start;
+					}
 				}
 			}
 		}
 	
+	}
+
+	&.no-interact
+	{
+		*
+		{
+			pointer-events: none;
+		}
 	}
 
 }

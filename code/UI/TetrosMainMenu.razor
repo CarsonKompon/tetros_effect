@@ -1,3 +1,4 @@
+@using System;
 @using Sandbox;
 @using Sandbox.UI;
 @inherits PanelComponent
@@ -5,6 +6,7 @@
 @namespace TetrosEffect
 
 <root>
+	<div @ref="CoverPanel" class="cover" />
 	<div class="left">
 		<img class="logo" src="/ui/tetros_effect_logo_glowing.png" />
 		<p>by Carson Kompon</p>
@@ -12,29 +14,73 @@
 
 	<div class="right">
 		<div class="options">
-			<button class="btn btn-primary" onclick=@StartGame>Start Game</button>
-			<button class="btn btn-primary" onclick=@Settings>Settings</button>
-			<button class="btn btn-primary" onclick=@Quit>Quit</button>
+			<button class="btn play" onclick=@StartGame>Start Game</button>
+			<button class="btn" onclick=@Settings>Settings</button>
+			<button class="btn" onclick=@Quit>Quit</button>
 		</div>
 	</div>
 </root>
 
 @code
 {
+	Panel CoverPanel;
+
+	public bool AllVisible = true;
+	public bool IsVisible = true;
+	float Alpha = 1.0f;
+	
 
 	void StartGame()
 	{
-
+		IsVisible = false;
 	}
 
 	void Settings()
 	{
-
+		AllVisible = false;
+		var settingsMenu = Scene.Components.GetInDescendants<TetrosSettingsMenu>();
+		if(settingsMenu is not null)
+		{
+			settingsMenu.IsVisible = true;
+		}
 	}
 
 	void Quit()
 	{
+		Game.Menu.Close();
+	}
+
+	protected override void OnUpdate()
+	{
+		if(IsVisible && Alpha < 1f)
+		{
+			Alpha += Time.Delta;
+			Alpha = Math.Clamp( Alpha, 0f, 1f );
+		}
+		else if(!IsVisible && Alpha > 0f)
+		{
+			Alpha -= Time.Delta;
+			Alpha = Math.Clamp( Alpha, 0f, 1f );
+		}
+
+		float opacity = Panel.Style.Opacity ?? 1f;
+		if(AllVisible && opacity < 1f)
+		{
+			opacity += Time.Delta;
+			opacity = Math.Clamp( opacity, 0f, 1f );
+		}
+		else if(!AllVisible && opacity > 0f)
+		{
+			opacity -= Time.Delta;
+			opacity = Math.Clamp( opacity, 0f, 1f );
+		}
 		
+		Panel.Style.Opacity = opacity;
+		if(CoverPanel.IsValid())
+		{
+			CoverPanel.Style.Opacity = 1f - Alpha;
+		}
+		SetClass("no-interact", Alpha < 1f);
 	}
 	
 	protected override int BuildHash() => System.HashCode.Combine( "" );

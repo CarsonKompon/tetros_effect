@@ -1,0 +1,67 @@
+@using System;
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+@namespace TetrosEffect
+
+<root>
+	<h1>Settings</h1>
+	<div class="settings">
+		<div class="setting">
+			<label>Music Volume</label>
+			<SliderControl Value:bind="@TetrosSettings.Instance.MusicVolume" Min=@(0) Max=@(1) Step=@(0.01f) />
+		</div>
+		<div class="setting">
+			<label>SFX Volume</label>
+			<SliderControl Value:bind="@TetrosSettings.Instance.SfxVolume" Min=@(0) Max=@(1) Step=@(0.01f) />
+		</div>
+		<div class="setting">
+			<label>Theme</label>
+			<TetrosThemeSelector @ref="ThemeSelector" />
+		</div>
+	</div>
+	<button class="btn" onclick=@Back>Back</button>
+</root>
+
+@code
+{
+	public bool IsVisible = false;
+	float Alpha = 0f;
+
+	TetrosThemeSelector ThemeSelector;
+
+	void Back()
+	{
+		var mainMenu = Scene.Components.GetInDescendants<TetrosMainMenu>();
+		if(mainMenu is not null)
+		{
+			mainMenu.IsVisible = true;
+			mainMenu.AllVisible = true;
+		}
+		var pauseMenu = Scene.Components.GetInDescendants<TetrosPauseMenu>();
+		if(pauseMenu is not null)
+			pauseMenu.IsVisible = true;
+
+		IsVisible = false;
+	}
+
+	protected override void OnUpdate()
+	{
+		if(IsVisible && Alpha < 1f)
+		{
+			Alpha += Time.Delta;
+			Alpha = Math.Clamp(Alpha, 0f, 1f);
+		}
+		else if(!IsVisible && Alpha > 0f)
+		{
+			Alpha -= Time.Delta;
+			Alpha = Math.Clamp(Alpha, 0f, 1f);
+		}
+
+		Panel.Style.Opacity = Alpha;
+		SetClass("no-interact", Alpha < 1f);
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( "" );
+}

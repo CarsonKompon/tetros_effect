@@ -1,0 +1,63 @@
+@using System.Collections.Generic;
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+@namespace TetrosEffect
+
+<root>
+    <label class="arrow" onclick=@Left>@("<")</label>
+    <label class="theme" onclick=@Preview>@(Theme?.Name ?? "")</label>
+    <label class="arrow" onclick=@Right>@(">")</label>
+</root>
+
+@code
+{
+    public TetrosTheme Theme { get; set; }
+
+    List<TetrosTheme> Themes;
+    int SelectedIndex = 0;
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        if(firstTime)
+        {
+            Themes = TetrosTheme.All;
+            SelectedIndex = Themes.IndexOf(TetrosTheme.Find(TetrosSettings.Instance.Theme));
+            Theme = Themes[SelectedIndex];
+        }
+    }
+
+    void Left()
+    {
+        SelectedIndex--;
+        if (SelectedIndex < 0)
+            SelectedIndex = Themes.Count - 1;
+
+        Theme = Themes[SelectedIndex];
+        TetrosSettings.Instance.Theme = Theme.ResourceId;
+        TetrosSettings.Instance.Save();
+    }
+
+    void Right()
+    {
+        SelectedIndex++;
+        if (SelectedIndex >= Themes.Count)
+            SelectedIndex = 0;
+
+        Theme = Themes[SelectedIndex];
+        TetrosSettings.Instance.Theme = Theme.ResourceId;
+        TetrosSettings.Instance.Save();
+    }
+
+    void Preview()
+    {
+        Sound.Play(Theme.MoveRightSound);
+    }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine(Theme?.Name ?? "", SelectedIndex);
+    }
+}

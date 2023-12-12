@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using Sandbox;
 
-namespace Rhythm4K;
+namespace TetrosEffect;
 
 [GameResource( "Tetros Theme", "tetros", "Describes a Tetros Effect Theme", Icon = "theme" )]
 public partial class TetrosTheme : GameResource
@@ -28,5 +28,9 @@ public partial class TetrosTheme : GameResource
     public string LineSound { get; set; } = "tetros_line";
     public string TetrosSound { get; set; } = "tetros_tetros";
     public string HoldSound { get; set; } = "tetros_hold";
+
+    public static List<TetrosTheme> All => ResourceLibrary.GetAll<TetrosTheme>().ToList();
+    public static TetrosTheme Find( int id ) => All.Where( x => x.ResourceId == id ).FirstOrDefault();
+    public static TetrosTheme FindByName( string name ) => All.Where( x => x.ResourceName == name ).FirstOrDefault();
 
 }

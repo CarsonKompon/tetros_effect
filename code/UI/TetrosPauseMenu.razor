@@ -3,16 +3,13 @@
 @inherits PanelComponent
 
 <root>
-	<div class="title">@MyStringValue</div>
+	<div class="title"></div>
 </root>
 
 @code
 {
 
-	[Property] public string MyStringValue { get; set; } = "Hello World!";
-
-	/// <summary>
-	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( MyStringValue );
+	public bool IsVisible = false;
+	
+	protected override int BuildHash() => System.HashCode.Combine( "" );
 }

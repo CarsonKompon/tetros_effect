@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Sandbox;
 using TetrosEffect;
 using System.Diagnostics.CodeAnalysis;
-using Rhythm4K;
 
 [Category( "Tetros Effect" )]
 public sealed class TetrosBoardManager : Component
