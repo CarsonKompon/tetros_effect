@@ -1115,13 +1115,13 @@
     }
   ],
   "SceneProperties": {
-    "NetworkFrequency": 60,
     "Lerping": true,
     "UseFixedUpdate": true,
     "ThreadedAnimation": true,
     "TimeScale": 1,
     "MaxFixedUpdates": 5,
-    "FixedUpdateFrequency": 50
+    "FixedUpdateFrequency": 50,
+    "NetworkFrequency": 60
   },
   "Title": "tetros",
   "Description": "",

@@ -14,6 +14,8 @@ public partial class TetrosTheme : GameResource
     [ResourceType( "vmdl" )]
     public string BoardModel { get; set; }
 
+    public string MusicSlow { get; set; } = "tetros_music_slow";
+    public string MusicFast { get; set; } = "tetros_music_fast";
     public string MoveLeftSound { get; set; } = "tetros_move";
     public string MoveRightSound { get; set; } = "tetros_move";
     public string MoveDownSound { get; set; } = "tetros_move";

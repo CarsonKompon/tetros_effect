@@ -39,6 +39,9 @@ public sealed class TetrosBoardManager : Component
 	private List<TetrosBlock> Blocks = new List<TetrosBlock>();
 	private List<PieceType> GrabBag { get; set; } = new List<PieceType>();
 	private bool JustHeld { get; set; } = false;
+	private SoundHandle SlowMusic { get; set; } = new SoundHandle();
+	private SoundHandle FastMusic { get; set; } = new SoundHandle();
+	private TimeUntil MusicTimer = 0f;
 
 	// Timers
 	private TimeSince LastUpdate = 0f;
@@ -146,6 +149,20 @@ public sealed class TetrosBoardManager : Component
 		{
 			GhostPiece.Transform.Position = GetPosition( (int)CurrentPiece.Position.x + (int)LastGhostOffset.x, (int)CurrentPiece.Position.y + (int)LastGhostOffset.y ) + new Vector3( GridSize / 2f, 0, -GridSize / 2f ); ;
 		}
+
+		// Loop the music
+		if ( !SlowMusic.IsPlaying )
+		{
+			FastMusic.Stop( true );
+			SlowMusic = PlaySound( Theme.MusicSlow );
+			FastMusic = PlaySound( Theme.MusicFast );
+		}
+
+		// Set music volume
+		var slowMusic = SlowMusic;
+		slowMusic.Volume = MusicTimer > 0 ? 0f : 1f;
+		var fastMusic = FastMusic;
+		fastMusic.Volume = MusicTimer > 0 ? 1f : 0f;
 	}
 
 	void UpdateNextPieces()
@@ -220,6 +237,9 @@ public sealed class TetrosBoardManager : Component
 	{
 		ResetGame();
 
+		SlowMusic = PlaySound( Theme.MusicSlow );
+		FastMusic = PlaySound( Theme.MusicFast );
+
 		IsPlaying = true;
 		HighScore = (long)Sandbox.Services.Stats.GetLocalPlayerStats( Game.Menu.Package.FullIdent ).Get( "tetros_highscore" ).Value;
 	}
@@ -230,6 +250,9 @@ public sealed class TetrosBoardManager : Component
 		Sandbox.Services.Stats.Increment( "tetros_games", 1 );
 		Sandbox.Services.Stats.SetValue( "tetros_highscore", Score );
 		IsPlaying = false;
+
+		SlowMusic.Stop( true );
+		FastMusic.Stop( true );
 
 		await Task.DelaySeconds( 1f );
 
@@ -563,6 +586,7 @@ public sealed class TetrosBoardManager : Component
 			if ( Combo > 0 )
 			{
 				Score += 50 * Combo * Level;
+				MusicTimer = 30f;
 			}
 
 			LinesCleared += lines;
