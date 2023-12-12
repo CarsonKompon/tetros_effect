@@ -44,7 +44,7 @@ public sealed class TetrosBoardManager : Component
 	private TimeUntil MusicTimer = 0f;
 
 	// Timers
-	private TimeSince LastUpdate = 0f;
+	public TimeSince LastUpdate = 0f;
 	private TimeSince LeftTimer = 0f;
 	private TimeSince RightTimer = 0f;
 
@@ -76,10 +76,10 @@ public sealed class TetrosBoardManager : Component
 			else
 			{
 				// Move the Piece
-				CurrentPiece.Position += new Vector2( 0, 1 );
+				CurrentPiece.Move( new Vector2( 0, 1 ) );
 				if ( CheckCurrentPieceCollision() )
 				{
-					CurrentPiece.Position -= new Vector2( 0, 1 );
+					CurrentPiece.Move( new Vector2( 0, -1 ) );
 					PlaceCurrentPiece();
 				}
 				else if ( fastDrop )
@@ -336,10 +336,10 @@ public sealed class TetrosBoardManager : Component
 	public void Move( int dir )
 	{
 		if ( CurrentPiece is null ) return;
-		CurrentPiece.Position += new Vector2( dir, 0 );
+		CurrentPiece.Move( new Vector2( dir, 0 ) );
 		if ( CheckCurrentPieceCollision() )
 		{
-			CurrentPiece.Position -= new Vector2( dir, 0 );
+			CurrentPiece.Move( new Vector2( -dir, 0 ) );
 		}
 		if ( dir < 0 )
 			PlaySound( Theme.MoveLeftSound );
@@ -363,21 +363,21 @@ public sealed class TetrosBoardManager : Component
 			// If we are colliding, try nudging the piece to the left or right
 			if ( CurrentPiece.Position.x < 6 )
 			{
-				CurrentPiece.Position += new Vector2( 1, 0 );
+				CurrentPiece.Move( new Vector2( 1, 0 ) );
 				if ( CheckCurrentPieceCollision() )
 				{
 					// We can't rotate, so move back
-					CurrentPiece.Position -= new Vector2( 1, 0 );
+					CurrentPiece.Move( new Vector2( -1, 0 ) );
 					CurrentPiece.PieceRotation = prevRot;
 				}
 			}
 			else if ( CurrentPiece.Position.x > 6 )
 			{
-				CurrentPiece.Position -= new Vector2( 1, 0 );
+				CurrentPiece.Move( new Vector2( -1, 0 ) );
 				if ( CheckCurrentPieceCollision() )
 				{
 					// We can't rotate, so move back
-					CurrentPiece.Position += new Vector2( 1, 0 );
+					CurrentPiece.Move( new Vector2( 1, 0 ) );
 					CurrentPiece.PieceRotation = prevRot;
 				}
 			}
@@ -403,11 +403,11 @@ public sealed class TetrosBoardManager : Component
 		if ( CurrentPiece is null ) return;
 		while ( !CheckCurrentPieceCollision() )
 		{
-			CurrentPiece.Position += new Vector2( 0, 1 );
+			CurrentPiece.Move( new Vector2( 0, 1 ) );
 			Score += 2;
 		}
 		Score -= 2;
-		CurrentPiece.Position -= new Vector2( 0, 1 );
+		CurrentPiece.Move( new Vector2( 0, -1 ) );
 		PlaceCurrentPiece();
 		LastUpdate = GetWaitTime() / 4f * 3f;
 

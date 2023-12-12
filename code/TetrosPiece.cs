@@ -19,6 +19,14 @@ public class TetrosPiece : Component
 
     [Property] public List<float> CustomPieceRotations { get; set; } = new List<float>();
 
+    Vector3 LastPosition = Vector3.Zero;
+    TimeSince LerpProgress = 0f;
+
+    protected override void OnStart()
+    {
+        LastPosition = Transform.LocalPosition;
+    }
+
     protected override void OnUpdate()
     {
         if ( Board is null ) return;
@@ -33,9 +41,28 @@ public class TetrosPiece : Component
         Container.Transform.Rotation = Rotation.Lerp( Container.Transform.Rotation, Rotation.From( new Angles( customAngle, 0, 0 ) ), lerp );
 
         // Lerp to position
-        lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 15 );
+        lerp = MathF.Min( LerpProgress * 15f, MathF.Min( Board.GetWaitTime(), 1f ) );
         var targetPosition = Board.GetLocalPosition( (int)Position.x, (int)Position.y ) + new Vector3( Board.GridSize / 2f, 0, -Board.GridSize / 2f );
-        Transform.LocalPosition = Vector3.Lerp( Transform.LocalPosition, targetPosition, lerp );
+        Transform.LocalPosition = Vector3.Lerp( LastPosition, targetPosition, lerp );
+    }
+
+    public void SetPosition( Vector2 pos, bool instant = false )
+    {
+        Position = pos;
+        LastPosition = Transform.LocalPosition;
+        LerpProgress = 0f;
+        if ( instant )
+        {
+            LerpProgress = 1f;
+            Transform.LocalPosition = Board.GetLocalPosition( (int)Position.x, (int)Position.y ) + new Vector3( Board.GridSize / 2f, 0, -Board.GridSize / 2f );
+        }
+    }
+
+    public void Move( Vector2 dir, bool instant = false )
+    {
+        if ( Board is null ) return;
+        var newPos = Position + dir;
+        SetPosition( newPos, instant );
     }
 
     public void SetRotation( int i, bool instant = false )
