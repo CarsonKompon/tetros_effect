@@ -80,6 +80,11 @@
           "Name": "Chat",
           "KeyboardCode": "enter",
           "GroupName": "Other"
+        },
+        {
+          "Name": "AlternateRotate",
+          "KeyboardCode": "UPARROW",
+          "GroupName": "Other"
         }
       ]
     }

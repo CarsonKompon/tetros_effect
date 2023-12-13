@@ -808,7 +808,7 @@
           "Height": 20,
           "QueueLength": 10,
           "QueueShown": 4,
-          "Theme": "resources/theme_calming.tetros",
+          "Theme": "resources/theme_retro.tetros",
           "Width": 10
         }
       ],

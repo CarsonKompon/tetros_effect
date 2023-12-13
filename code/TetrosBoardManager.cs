@@ -135,7 +135,7 @@ public sealed class TetrosBoardManager : Component
 			{
 				Rotate( -1 );
 			}
-			else if ( Input.Pressed( "RotateRight" ) )
+			else if ( Input.Pressed( "RotateRight" ) || Input.Pressed( "AlternateRotate" ) )
 			{
 				Rotate( 1 );
 			}
