@@ -1,0 +1,104 @@
+@using System.Collections.Generic;
+@using Sandbox;
+@using Sandbox.UI;
+@attribute [StyleSheet]
+@inherits Panel
+
+@namespace TetrosEffect
+
+<root>
+    <div class="header">
+        <label class="arrow" onclick=@Left>@("<")</label>
+        <label class="board-name">@(CurrentBoard?.DisplayName ?? "")</label>
+        <label class="arrow" onclick=@Right>@(">")</label>
+    </div>
+    @if(CurrentBoard is not null)
+    {
+        <div class="entries">
+            @foreach(var entry in CurrentBoard.Entries)
+            {
+                <div class="entry @IsMe(entry)">
+                    <div class="rank">@entry.Rank</div>
+                    <div class="name">
+                        <image texture=@AvatarTexture(entry) />
+                        <label>@entry.DisplayName</label>
+                    </div>
+                    <div class="value">@entry.FormattedValue</div>
+                </div>
+            }
+        </div>
+    }
+</root>
+
+@code
+{
+    public TetrosTheme Theme { get; set; }
+
+    string[] LeaderboardIds = new string[]
+    {
+        "tetros_highscore",
+        "tetro_games",
+        "tetros_lines_per",
+        "tetros_lines"
+    };
+    List<Sandbox.Services.Leaderboards.Board> Leaderboards;
+    int SelectedIndex = 0;
+    Sandbox.Services.Leaderboards.Board CurrentBoard => (Leaderboards is null) ? null : Leaderboards[SelectedIndex];
+
+
+    protected override void OnAfterTreeRender(bool firstTime)
+    {
+        if(firstTime)
+        {
+            Leaderboards = new List<Sandbox.Services.Leaderboards.Board>();
+            foreach(var id in LeaderboardIds)
+            {
+                var board = Sandbox.Services.Leaderboards.Get(id);
+                if(board is not null)
+                    Leaderboards.Add(board);
+            }
+
+            RefreshBoard();
+        }
+    }
+
+    void Left()
+    {
+        SelectedIndex--;
+        if(SelectedIndex < 0)
+            SelectedIndex = Leaderboards.Count - 1;
+
+        RefreshBoard();
+    }   
+
+    void Right()
+    {
+        SelectedIndex++;
+        if(SelectedIndex >= Leaderboards.Count)
+            SelectedIndex = 0;
+
+        RefreshBoard();
+    } 
+
+    async void RefreshBoard()
+    {
+        await CurrentBoard.Refresh();
+
+        StateHasChanged();
+    }
+
+    string IsMe(Sandbox.Services.Leaderboards.Entry entry)
+    {
+        return entry.Me ? "me" : "";
+    }
+
+    string AvatarTexture(Sandbox.Services.Leaderboards.Entry entry)
+    {
+        return $"avatar:{entry.SteamId}";
+    }
+
+    protected override int BuildHash()
+    {
+        return System.HashCode.Combine(CurrentBoard?.DisplayName ?? "");
+    }
+}

@@ -241,7 +241,7 @@ public sealed class TetrosBoardManager : Component
 		Board.Components.Get<ModelRenderer>().Model = Model.Load( Theme.BoardModel );
 
 		IsPlaying = true;
-		HighScore = (long)Sandbox.Services.Stats.GetLocalPlayerStats( Game.Menu.Package.FullIdent ).Get( "tetros_highscore" ).Value;
+		RequestHighscore();
 
 		var allResults = GameManager.UIObject.Components.GetAll<TetrosResultsScreen>();
 		for ( int i = 0; i < allResults.Count(); i++ )
@@ -750,6 +750,19 @@ public sealed class TetrosBoardManager : Component
 			case 19: return 1f / 60f;
 			case 20: return 1f / 60f;
 			default: return 0.01f;
+		}
+	}
+
+	async void RequestHighscore()
+	{
+		var leaderboard = Sandbox.Services.Leaderboards.Get( "tetros_highscore" );
+		await leaderboard.Refresh();
+		foreach ( var entry in leaderboard.Entries )
+		{
+			if ( entry.SteamId == Game.SteamId )
+			{
+				HighScore = (long)entry.Value;
+			}
 		}
 	}
 
