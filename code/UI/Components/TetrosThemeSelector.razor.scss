@@ -5,7 +5,7 @@ TetrosThemeSelector
     .arrow
     {
         transform: scale(1);
-        transition: all 0.05s ease-in-out;
+        transition: transform 0.05s ease-in-out;
 
         &:hover
         {

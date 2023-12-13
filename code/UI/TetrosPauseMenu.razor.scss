@@ -12,10 +12,14 @@ TetrosPauseMenu
     align-items: center;
     justify-content: center;
 
+    text-shadow: 0px 0px 8px black;
+
     color: white;
     font-family: 04b08;
 
     z-index: 999;
+    
+    font-size: 24px;
 
     .content
     {
@@ -40,7 +44,7 @@ TetrosPauseMenu
         button
         {
             transform: scale(1);
-            transition: all 0.05s ease-in-out;
+            transition: transform 0.05s ease-in-out;
             cursor: pointer;
 
             &:hover
