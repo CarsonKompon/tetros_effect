@@ -82,6 +82,7 @@
 
     async void RefreshBoard()
     {
+        CurrentBoard.MaxEntries = 10;
         await CurrentBoard.Refresh();
 
         StateHasChanged();

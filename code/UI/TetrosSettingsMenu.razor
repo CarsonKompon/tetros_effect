@@ -47,7 +47,7 @@
 	</div>
 	<div class="controls">
 
-        @foreach ( var group in Game.Menu.InputSettings.Actions.GroupBy( x => x.GroupName ) )
+        @foreach ( var group in IGameInstance.Current.InputSettings.Actions.GroupBy( x => x.GroupName ) )
         {
             <div class="category">
                 <h2>@group.Key</h2>
@@ -58,7 +58,7 @@
                     <FormGroup>
                         <Label>@action.Name</Label>
                         <Control>
-                            <KeyBind Game="@Game.Menu" Action=@action class="glass with-padding with-grow with-click"></KeyBind>
+                            <KeyBind Action=@action class="glass with-padding with-grow with-click"></KeyBind>
                         </Control>
                     </FormGroup>
                 }

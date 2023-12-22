@@ -8,7 +8,6 @@ namespace TetrosEffect;
 
 public class KeyBind : Label
 {
-    public IGameMenu Game { get; set; }
     public InputAction Action { get; set; }
     bool Rebinding { get; set; }
     string TargetKey { get; set; }
@@ -34,7 +33,7 @@ public class KeyBind : Label
             return;
         }
 
-        var str = Game.GetBind( Action.Name, out var isDefault, out var isCommon );
+        var str = IGameInstance.Current.GetBind( Action.Name, out var isDefault, out var isCommon );
 
         if ( str == null )
         {
@@ -65,7 +64,7 @@ public class KeyBind : Label
             Rebinding = true;
             TargetKey = null;
 
-            Game.TrapButtons( ( buttons ) =>
+            IGameInstance.Current.TrapButtons( ( buttons ) =>
             {
                 if ( buttons.Contains( "ESCAPE", StringComparer.OrdinalIgnoreCase ) )
                 {
@@ -81,12 +80,12 @@ public class KeyBind : Label
             } );
         }
 
-        // if ( e.Button == "mouseright" )
-        // {
-        //     Game.SetBind( Action.Name, null );
-        //     TargetKey = null;
-        //     CreateEvent( "onchange" );
-        // }
+        if ( e.Button == "mouseright" )
+        {
+            IGameInstance.Current.SetBind( Action.Name, null );
+            TargetKey = null;
+            CreateEvent( "onchange" );
+        }
     }
 
     public void Apply()
@@ -94,7 +93,7 @@ public class KeyBind : Label
         if ( string.IsNullOrEmpty( TargetKey ) )
             return;
 
-        Game.SetBind( Action.Name, TargetKey );
+        IGameInstance.Current.SetBind( Action.Name, TargetKey );
         TargetKey = null;
     }
 

@@ -54,7 +54,7 @@
 
 	void Quit()
 	{
-		Game.Menu.Close();
+		IGameInstance.Current.Close();
 	}
 
 	protected override void OnUpdate()

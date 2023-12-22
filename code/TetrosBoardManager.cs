@@ -39,8 +39,8 @@ public sealed class TetrosBoardManager : Component
 	private List<TetrosBlock> Blocks = new List<TetrosBlock>();
 	private List<PieceType> GrabBag { get; set; } = new List<PieceType>();
 	private bool JustHeld { get; set; } = false;
-	private SoundHandle SlowMusic { get; set; } = new SoundHandle();
-	private SoundHandle FastMusic { get; set; } = new SoundHandle();
+	private SoundHandle SlowMusic { get; set; }
+	private SoundHandle FastMusic { get; set; }
 	private TimeUntil MusicTimer = 0f;
 
 	// Timers
@@ -55,6 +55,11 @@ public sealed class TetrosBoardManager : Component
 		AnchorPosition = Board.Transform.Position;
 
 		StartGame();
+	}
+
+	protected override void OnDestroy()
+	{
+		StopMusic();
 	}
 
 	protected override void OnUpdate()
@@ -152,9 +157,9 @@ public sealed class TetrosBoardManager : Component
 		}
 
 		// Loop the music
-		if ( !SlowMusic.IsPlaying )
+		if ( !(SlowMusic?.IsPlaying ?? false) )
 		{
-			FastMusic.Stop( true );
+			FastMusic?.Stop( 0 );
 			SlowMusic = PlaySound( Theme.MusicSlow );
 			FastMusic = PlaySound( Theme.MusicFast );
 		}
@@ -709,16 +714,16 @@ public sealed class TetrosBoardManager : Component
 
 	SoundHandle PlaySound( string soundName )
 	{
-		if ( string.IsNullOrEmpty( soundName ) ) return new SoundHandle();
+		if ( string.IsNullOrEmpty( soundName ) ) return null;
 		var sound = Sound.Play( soundName, Camera.Transform.Position + Camera.Transform.Rotation.Forward * 25f + Camera.Transform.Rotation.Left * 5f );
-		sound.Volume = TetrosSettings.Instance.SfxVolume;
+		if ( sound is not null ) sound.Volume = TetrosSettings.Instance.SfxVolume;
 		return sound;
 	}
 
 	public void StopMusic()
 	{
-		SlowMusic.Stop( true );
-		FastMusic.Stop( true );
+		SlowMusic.Stop( 0 );
+		FastMusic.Stop( 0 );
 	}
 
 	public float GetWaitTime()
