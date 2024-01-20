@@ -293,7 +293,7 @@ public sealed class TetrosBoardManager : Component
 
 		if ( prefab is not null )
 		{
-			var pieceObj = SceneUtility.Instantiate( prefab, GetPosition( 5, -2 ) );
+			var pieceObj = prefab.Clone( GetPosition( 5, -2 ) );
 			pieceObj.SetParent( BlocksContainer );
 			pieceObj.Enabled = true;
 			var piece = pieceObj.Components.GetInChildrenOrSelf<TetrosPiece>();
@@ -327,7 +327,7 @@ public sealed class TetrosBoardManager : Component
 
 	GameObject SpawnBlock( Vector2 position, Color color )
 	{
-		var blockObject = SceneUtility.Instantiate( GameManager.BlockPrefab, GetPosition( (int)position.x, (int)position.y ) );
+		var blockObject = GameManager.BlockPrefab.Clone( GetPosition( (int)position.x, (int)position.y ) );
 		blockObject.SetParent( BlocksContainer );
 		var blockScript = blockObject.Components.Get<TetrosBlock>();
 		blockScript.Board = this;
@@ -684,8 +684,7 @@ public sealed class TetrosBoardManager : Component
 	public void SpawnParticleBurst( Vector2 position, Color color )
 	{
 		if ( !TetrosSettings.Instance.ShowParticles ) return;
-		var particle = SceneUtility.Instantiate( GameManager.ParticleBurstPrefab, GetPosition( (int)position.x, (int)position.y ) );
-		particle.SetParent( GameObject );
+		var particle = GameManager.ParticleBurstPrefab.Clone( GetPosition( (int)position.x, (int)position.y ) );
 		particle.Enabled = true;
 		var particleScript = particle.Components.Get<ParticleEffect>();
 		particleScript.Tint = color;
