@@ -1,0 +1,104 @@
+{
+  "RootObject": {
+    "Id": "6400b76d-a251-4c3b-aaeb-a55b03cc2ea8",
+    "Name": "piece_j",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "TetrosPiece",
+        "Board": null,
+        "Color": "0.26667,0.35294,0.64706,1",
+        "Container": {
+          "_type": "gameobject",
+          "go": "62b855e6-7caa-44a1-ae38-7c6fdb59e6f1"
+        },
+        "CustomPieceRotations": [],
+        "PieceRotation": 0,
+        "Position": "5,-2",
+        "Type": "J"
+      }
+    ],
+    "Children": [
+      {
+        "Id": "62b855e6-7caa-44a1-ae38-7c6fdb59e6f1",
+        "Name": "Container",
+        "Position": "-32,0,32",
+        "Enabled": true,
+        "Children": [
+          {
+            "Id": "b53eeec3-b1b6-4336-ab45-77f823f6f916",
+            "Name": "block",
+            "Position": "0,0,0",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "ModelRenderer",
+                "BodyGroups": 18446744073709551615,
+                "MaterialGroup": null,
+                "MaterialOverride": "materials/glowing.vmat",
+                "Model": "models/block.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ]
+          },
+          {
+            "Id": "05095b2c-3539-40d6-a640-a5c692e3166e",
+            "Name": "block",
+            "Position": "-64,0,0",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "ModelRenderer",
+                "BodyGroups": 18446744073709551615,
+                "MaterialGroup": null,
+                "MaterialOverride": "materials/glowing.vmat",
+                "Model": "models/block.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ]
+          },
+          {
+            "Id": "50db4a8e-c958-4cbb-8805-d399a82f286e",
+            "Name": "block",
+            "Position": "64,0,-64",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "ModelRenderer",
+                "BodyGroups": 18446744073709551615,
+                "MaterialGroup": null,
+                "MaterialOverride": "materials/glowing.vmat",
+                "Model": "models/block.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ]
+          },
+          {
+            "Id": "9eae5ed2-25ed-4213-8b51-f057ba5cc838",
+            "Name": "block",
+            "Position": "64,0,0",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "ModelRenderer",
+                "BodyGroups": 18446744073709551615,
+                "MaterialGroup": null,
+                "MaterialOverride": "materials/glowing.vmat",
+                "Model": "models/block.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}
