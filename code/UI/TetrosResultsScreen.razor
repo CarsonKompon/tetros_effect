@@ -29,7 +29,7 @@
 		var fadeOut = GameObject.Components.Create<FadeOutComponent>();
 		fadeOut.FadeColor = Color.FromRgb(0x161616);
 		fadeOut.OnFadeOut += () => {
-			GameManager.ActiveScene.LoadFromFile("scenes/mainmenu.scene");
+			Game.ActiveScene.LoadFromFile("scenes/mainmenu.scene");
 		};
 	}
 

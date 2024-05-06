@@ -54,7 +54,7 @@
         TetrosSettings.Instance.Save();
 
         // TODO: Make this get the board that has the same player as the client
-        var game = GameManager.ActiveScene.Components.GetInChildren<TetrosGameManager>();
+        var game = Game.ActiveScene.Components.GetInChildren<TetrosGameManager>();
         if(game is not null && game.IsSingleplayer)
         {
             foreach(var board in game.Boards)

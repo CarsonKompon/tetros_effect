@@ -5,12 +5,7 @@
   "Ident": "tetros_effect",
   "Tags": null,
   "Schema": 1,
-  "HasAssets": true,
-  "AssetsPath": "",
   "Resources": null,
-  "MenuResources": "/fonts/*\n/materials/*\n*.vmdl\n*.prefab\n*.tetros\n*.scene\n*.sound\n*.vsnd\n*.scss\n*.png",
-  "HasCode": true,
-  "CodePath": "/code/",
   "PackageReferences": [],
   "EditorReferences": null,
   "Metadata": {
