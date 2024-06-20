@@ -43,29 +43,29 @@
 			<label>Line Clear Effects</label>
 			<SwitchControl Value:bind="@TetrosSettings.Instance.ShowParticles" />
 		</div>
-		<button class="btn" onclick=@ControlsPage>Controls</button>
+		<button class="btn" onclick=@Game.Overlay.ShowBinds>Controls</button>
 	</div>
 	<div class="controls">
 
-        @* @foreach ( var group in Game.InputSettings.Actions.GroupBy( x => x.GroupName ) )
-        {
-            <div class="category">
-                <h2>@group.Key</h2>
+		@* @foreach ( var group in Game.InputSettings.Actions.GroupBy( x => x.GroupName ) )
+		{
+		<div class="category">
+		<h2>@group.Key</h2>
 
-                <div class="form">
-                @foreach ( InputAction action in group )
-                {
-                    <FormGroup>
-                        <Label>@action.Name</Label>
-                        <Control>
-                            <KeyBind Action=@action class="glass with-padding with-grow with-click"></KeyBind>
-                        </Control>
-                    </FormGroup>
-                }
-                </div>
-            </div>
-        } *@
-    </div>
+		<div class="form">
+		@foreach ( InputAction action in group )
+		{
+		<FormGroup>
+		<Label>@action.Name</Label>
+		<Control>
+		<KeyBind Action=@action class="glass with-padding with-grow with-click"></KeyBind>
+		</Control>
+		</FormGroup>
+		}
+		</div>
+		</div>
+		} *@
+	</div>
 
 	<button class="btn" onclick=@Back>Back</button>
 </root>
@@ -85,20 +85,20 @@
 
 	void Back()
 	{
-		if(InControls)
+		if (InControls)
 		{
 			InControls = false;
 			return;
 		}
 
 		var mainMenu = Scene.Components.GetInDescendants<TetrosMainMenu>();
-		if(mainMenu is not null)
+		if (mainMenu is not null)
 		{
 			mainMenu.IsVisible = true;
 			mainMenu.AllVisible = true;
 		}
 		var pauseMenu = Scene.Components.GetInDescendants<TetrosPauseMenu>();
-		if(pauseMenu is not null)
+		if (pauseMenu is not null)
 			pauseMenu.IsVisible = true;
 
 		IsVisible = false;
@@ -106,12 +106,12 @@
 
 	protected override void OnUpdate()
 	{
-		if(IsVisible && Alpha < 1f)
+		if (IsVisible && Alpha < 1f)
 		{
 			Alpha += RealTime.Delta;
 			Alpha = Math.Clamp(Alpha, 0f, 1f);
 		}
-		else if(!IsVisible && Alpha > 0f)
+		else if (!IsVisible && Alpha > 0f)
 		{
 			Alpha -= RealTime.Delta;
 			Alpha = Math.Clamp(Alpha, 0f, 1f);
@@ -122,5 +122,5 @@
 		SetClass("in-controls", InControls);
 	}
 
-	protected override int BuildHash() => System.HashCode.Combine( InControls );
+	protected override int BuildHash() => System.HashCode.Combine(InControls);
 }

@@ -27,6 +27,8 @@
 			return;
 		}
 
+		if (!Panel.IsValid()) return;
+
 		Panel.Style.Opacity = Alpha;
 		Panel.Style.BackgroundColor = FadeColor;
 	}

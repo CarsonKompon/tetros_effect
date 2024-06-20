@@ -16,10 +16,12 @@ TetrosResultsScreen
 	font-family: 04b08;
 	gap: 64px;
 	font-size: 24px;
+    padding: 128px;
 
 	h1
 	{
 		font-size: 48px;
+        flex-shrink: 0;
 	}
 
 	.options
@@ -28,6 +30,7 @@ TetrosResultsScreen
         justify-content: center;
         align-items: center;
         gap: 32px;
+        flex-shrink: 0;
 
         button
         {
