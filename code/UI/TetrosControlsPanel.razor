@@ -1,0 +1,53 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+@namespace TetrosEffect
+
+<root>
+	<div class="input">
+		<div class="buttons">
+			<Image Texture=@Input.GetGlyph("MoveLeft", InputGlyphSize.Small, false) />
+			<Image Texture=@Input.GetGlyph("MoveRight", InputGlyphSize.Small, false) />
+		</div>
+		<div class="spacer" />
+		<label>Move</label>
+	</div>
+	<div class="input">
+		<div class="buttons">
+			<Image Texture=@Input.GetGlyph("RotateLeft", InputGlyphSize.Small, false) />
+			<Image Texture=@Input.GetGlyph("RotateRight", InputGlyphSize.Small, false) />
+			<Image Texture=@Input.GetGlyph("AlternateRotate", InputGlyphSize.Small, false) />
+		</div>
+		<div class="spacer" />
+		<label>Rotate</label>
+	</div>
+	<div class="input">
+		<div class="buttons">
+			<Image Texture=@Input.GetGlyph("SoftDrop", InputGlyphSize.Small, false) />
+		</div>
+		<div class="spacer" />
+		<label>Drop Slowly</label>
+	</div>
+	<div class="input">
+		<div class="buttons">
+			<Image Texture=@Input.GetGlyph("HardDrop", InputGlyphSize.Small, false) />
+		</div>
+		<div class="spacer" />
+		<label>Hard Drop</label>
+	</div>
+	<div class="input">
+		<div class="buttons">
+			<Image Texture=@Input.GetGlyph("Hold", InputGlyphSize.Small, false) />
+		</div>
+		<div class="spacer" />
+		<label>Hold</label>
+	</div>
+</root>
+
+@code
+{
+
+
+	protected override int BuildHash() => System.HashCode.Combine("");
+}

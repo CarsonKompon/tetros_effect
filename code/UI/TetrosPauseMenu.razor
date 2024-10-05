@@ -26,24 +26,26 @@
 
 	protected override void OnUpdate()
 	{
-		if(Input.EscapePressed)
+		if (Input.EscapePressed)
 		{
-			if(!IsOpen)
+			if (!IsOpen)
 			{
 				IsOpen = true;
 			}
-			else if(IsVisible)
+			else if (IsVisible)
 			{
 				IsOpen = false;
 			}
+
+			Input.EscapePressed = false;
 		}
 
-		if(IsVisible && Alpha < 1f)
+		if (IsVisible && Alpha < 1f)
 		{
 			Alpha += RealTime.Delta;
 			Alpha = Math.Clamp(Alpha, 0f, 1f);
 		}
-		else if(!IsVisible && Alpha > 0f)
+		else if (!IsVisible && Alpha > 0f)
 		{
 			Alpha -= RealTime.Delta;
 			Alpha = Math.Clamp(Alpha, 0f, 1f);
@@ -51,7 +53,7 @@
 
 		Scene.TimeScale = IsOpen ? 0 : 1;
 		Panel.Style.Opacity = (IsOpen ? 1 : 0);
-		if(ContentPanel.IsValid())
+		if (ContentPanel.IsValid())
 			ContentPanel.Style.Opacity = Alpha;
 
 		SetClass("no-interact", !IsOpen || !IsVisible);
@@ -66,7 +68,7 @@
 	{
 		IsVisible = false;
 		var settingsMenu = GameObject.Components.Get<TetrosSettingsMenu>();
-		if(settingsMenu is not null)
+		if (settingsMenu is not null)
 		{
 			settingsMenu.IsVisible = true;
 		}
@@ -78,10 +80,11 @@
 		var fadeOut = GameObject.Components.Create<FadeOutComponent>();
 		fadeOut.FadeColor = Color.FromRgb(0x161616);
 		fadeOut.FadeTime = 1f;
-		fadeOut.OnFadeOut += () => {
+		fadeOut.OnFadeOut += () =>
+		{
 			Game.ActiveScene.LoadFromFile("scenes/mainmenu.scene");
 		};
 	}
 
-	protected override int BuildHash() => System.HashCode.Combine( Alpha );
+	protected override int BuildHash() => System.HashCode.Combine(Alpha);
 }
