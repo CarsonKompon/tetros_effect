@@ -1,13 +1,15 @@
 {
-  "Id": "4a42d6cd-e972-407a-8f0a-eb4230e839bf",
+  "__guid": "4a42d6cd-e972-407a-8f0a-eb4230e839bf",
   "GameObjects": [
     {
-      "Id": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
+      "__guid": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
+      "Flags": 0,
       "Name": "Game Manager",
       "Enabled": true,
       "Components": [
         {
-          "__type": "TetrosGameManager",
+          "__type": "TetrosEffect.TetrosGameManager",
+          "__guid": "3d734c61-0980-4cab-b39b-bcf41354812b",
           "BlockPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/new_block.prefab"
@@ -15,6 +17,7 @@
           "Boards": [
             {
               "_type": "component",
+              "component_id": "845334fd-bbee-487d-9bda-f733826ee0b1",
               "go": "13acaa9e-a456-4e92-b479-340f470ddd77",
               "component_type": "TetrosBoardManager"
             }
@@ -60,49 +63,64 @@
       ]
     },
     {
-      "Id": "040526dd-f5a6-4989-9706-6341e56c747d",
+      "__guid": "040526dd-f5a6-4989-9706-6341e56c747d",
+      "Flags": 0,
       "Name": "Screen UI",
       "Position": "391.7116,-1429.395,658.5573",
       "Enabled": true,
       "Components": [
         {
-          "__type": "ScreenPanel",
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "3b2b31c0-021b-4bb6-9361-e8090e472442",
           "AutoScreenScale": true,
           "Opacity": 1,
           "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
           "ZIndex": 100
         },
         {
-          "__type": "TetrosMusicPlaying",
+          "__type": "TetrosEffect.TetrosMusicPlaying",
+          "__guid": "8023e89f-c2ed-454b-be5e-c9432017495e",
           "Board": {
             "_type": "component",
+            "component_id": "845334fd-bbee-487d-9bda-f733826ee0b1",
             "go": "13acaa9e-a456-4e92-b479-340f470ddd77",
             "component_type": "TetrosBoardManager"
           }
         },
         {
-          "__type": "TetrosPauseMenu",
+          "__type": "TetrosEffect.TetrosPauseMenu",
+          "__guid": "63c39f35-7c61-4aab-b097-a1edf6f3b6a0",
           "IsOpen": false
         },
         {
-          "__type": "TetrosSettingsMenu"
+          "__type": "TetrosEffect.TetrosSettingsMenu",
+          "__guid": "5237e477-2ed6-4c74-a59a-522b425083e8"
         },
         {
-          "__type": "FadeInComponent",
+          "__type": "TetrosEffect.FadeInComponent",
+          "__guid": "4bb80410-3000-43f7-96cb-3150eeb9bb0d",
           "FadeColor": "0.08627,0.08627,0.08627,1",
           "FadeTime": 1
+        },
+        {
+          "__type": "TetrosEffect.TetrosControlsPanel",
+          "__guid": "63d33400-612b-4204-bbd4-8b474a1992be"
         }
       ]
     },
     {
-      "Id": "6d57a4b8-a682-44b5-90bf-0edbad29d531",
+      "__guid": "6d57a4b8-a682-44b5-90bf-0edbad29d531",
+      "Flags": 0,
       "Name": "Directional Light",
       "Position": "0.0000167524,-2110.244,322.3834",
       "Rotation": "-0.1896882,0.3862845,0.5674009,0.7020389",
+      "Tags": "light_directional,light",
       "Enabled": true,
       "Components": [
         {
-          "__type": "DirectionalLight",
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "efe5a462-836b-44b4-b326-ee4ac9c86796",
           "FogMode": "Enabled",
           "FogStrength": 1,
           "LightColor": "1,1,1,1",
@@ -112,14 +130,16 @@
       ]
     },
     {
-      "Id": "13acaa9e-a456-4e92-b479-340f470ddd77",
+      "__guid": "13acaa9e-a456-4e92-b479-340f470ddd77",
+      "Flags": 0,
       "Name": "Singleplayer Board",
       "Position": "-320,-0.0004807256,608",
-      "Networked": true,
       "Enabled": true,
+      "NetworkMode": 1,
       "Components": [
         {
           "__type": "TetrosBoardManager",
+          "__guid": "845334fd-bbee-487d-9bda-f733826ee0b1",
           "BlocksContainer": {
             "_type": "gameobject",
             "go": "7da5d2ea-3d22-4941-a439-07dbdf0c258e"
@@ -130,11 +150,13 @@
           },
           "Camera": {
             "_type": "component",
+            "component_id": "da6ba748-a354-432c-a7be-234f15faa3fc",
             "go": "407067ac-fe0d-42d7-bd12-a93e1280810a",
             "component_type": "TetrosGameCamera"
           },
           "GameManager": {
             "_type": "component",
+            "component_id": "3d734c61-0980-4cab-b39b-bcf41354812b",
             "go": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
             "component_type": "TetrosGameManager"
           },
@@ -148,63 +170,83 @@
       ],
       "Children": [
         {
-          "Id": "f8dd9222-9ab7-4d1a-aac7-2e28dd4cd410",
+          "__guid": "f8dd9222-9ab7-4d1a-aac7-2e28dd4cd410",
+          "Flags": 0,
           "Name": "Board Model",
           "Position": "320,0,-608",
           "Rotation": "0.707107,0,0,0.7071065",
           "Enabled": true,
           "Components": [
             {
-              "__type": "ModelRenderer",
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "bdeafba7-e6fa-40c3-ab30-4fde19e51cbe",
               "BodyGroups": 18446744073709551615,
-              "MaterialGroup": null,
               "MaterialOverride": "materials/glowing.vmat",
               "Model": "models/board_curved.vmdl",
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
               "RenderType": "On",
               "Tint": "1,1,1,1"
             },
             {
-              "__type": "ModelCollider",
+              "__type": "Sandbox.ModelCollider",
+              "__guid": "f126ecc2-c588-41f5-a68b-31fb49e9345a",
               "IsTrigger": false,
               "Model": "models/board.vmdl",
-              "Static": true,
-              "Surface": null
+              "Static": true
             }
           ],
           "Children": [
             {
-              "Id": "7da5d2ea-3d22-4941-a439-07dbdf0c258e",
+              "__guid": "7da5d2ea-3d22-4941-a439-07dbdf0c258e",
+              "Flags": 0,
               "Name": "Blocks",
               "Position": "-320,607.9999,-0.0002899168",
               "Rotation": "-0.7071071,0,0,0.7071065",
               "Enabled": true
             },
             {
-              "Id": "0b4120bc-0f56-4d12-b020-40fcba3334ce",
+              "__guid": "0b4120bc-0f56-4d12-b020-40fcba3334ce",
+              "Flags": 0,
               "Name": "UI",
               "Position": "-320,608,-0.0005073547",
               "Rotation": "-0.7071071,0,0,0.7071065",
               "Enabled": true,
               "Children": [
                 {
-                  "Id": "abe97e25-b8db-474a-9464-ec0b5e43428b",
+                  "__guid": "abe97e25-b8db-474a-9464-ec0b5e43428b",
+                  "Flags": 0,
                   "Name": "Line Information",
                   "Position": "-346.618,-0.00004709489,-899.2711",
                   "Rotation": "0,-0,-0.707107,0.7071065",
                   "Enabled": true,
                   "Components": [
                     {
-                      "__type": "WorldPanel",
+                      "__type": "Sandbox.WorldPanel",
+                      "__guid": "69161e53-b8fe-4218-87f3-561a6654bb1f",
                       "HorizontalAlign": "Center",
+                      "InteractionRange": 1000,
                       "LookAtCamera": false,
                       "PanelSize": "8192,16384",
+                      "RenderOptions": {
+                        "GameLayer": true,
+                        "OverlayLayer": false,
+                        "BloomLayer": false,
+                        "AfterUILayer": false
+                      },
                       "RenderScale": 1,
                       "VerticalAlign": "Center"
                     },
                     {
-                      "__type": "TetrosLineInformationHUD",
+                      "__type": "TetrosEffect.TetrosLineInformationHUD",
+                      "__guid": "aadd57ee-d739-4240-8393-88783180b6e8",
                       "Board": {
                         "_type": "component",
+                        "component_id": "845334fd-bbee-487d-9bda-f733826ee0b1",
                         "go": "13acaa9e-a456-4e92-b479-340f470ddd77",
                         "component_type": "TetrosBoardManager"
                       }
@@ -212,24 +254,35 @@
                   ]
                 },
                 {
-                  "Id": "73a1dc30-e0bf-46b6-92e9-3ee259b39593",
+                  "__guid": "73a1dc30-e0bf-46b6-92e9-3ee259b39593",
+                  "Flags": 0,
                   "Name": "Game Information",
                   "Position": "913.5629,-0.0007982209,-899.2711",
                   "Rotation": "0,-0,-0.707107,0.7071065",
                   "Enabled": true,
                   "Components": [
                     {
-                      "__type": "WorldPanel",
+                      "__type": "Sandbox.WorldPanel",
+                      "__guid": "e701b293-d1f8-4534-8388-903104b7bb46",
                       "HorizontalAlign": "Center",
+                      "InteractionRange": 1000,
                       "LookAtCamera": false,
                       "PanelSize": "8192,16384",
+                      "RenderOptions": {
+                        "GameLayer": true,
+                        "OverlayLayer": false,
+                        "BloomLayer": false,
+                        "AfterUILayer": false
+                      },
                       "RenderScale": 1,
                       "VerticalAlign": "Center"
                     },
                     {
-                      "__type": "TetrosGameInformationHUD",
+                      "__type": "TetrosEffect.TetrosGameInformationHUD",
+                      "__guid": "f7497015-e639-4959-9b0a-075a0f160d06",
                       "Board": {
                         "_type": "component",
+                        "component_id": "845334fd-bbee-487d-9bda-f733826ee0b1",
                         "go": "13acaa9e-a456-4e92-b479-340f470ddd77",
                         "component_type": "TetrosBoardManager"
                       }
@@ -241,14 +294,16 @@
           ]
         },
         {
-          "Id": "407067ac-fe0d-42d7-bd12-a93e1280810a",
+          "__guid": "407067ac-fe0d-42d7-bd12-a93e1280810a",
+          "Flags": 0,
           "Name": "Main Camera",
           "Position": "237.0393,-2110.292,-484.2302",
           "Rotation": "-0.02735923,0.02776051,0.701407,0.7116945",
           "Enabled": true,
           "Components": [
             {
-              "__type": "CameraComponent",
+              "__type": "Sandbox.CameraComponent",
+              "__guid": "ba6e4848-47af-4f06-a7f3-856b6f4f73da",
               "BackgroundColor": "0.08911,0.08911,0.08911,1",
               "ClearFlags": "All",
               "FieldOfView": 60,
@@ -264,7 +319,8 @@
               "ZNear": 10
             },
             {
-              "__type": "Bloom",
+              "__type": "Sandbox.Bloom",
+              "__guid": "e052a56f-bfd6-4e0f-8bad-615256791d52",
               "BloomColor": {
                 "color": [
                   {
@@ -290,7 +346,8 @@
               "ThresholdWidth": 0
             },
             {
-              "__type": "TetrosGameCamera",
+              "__type": "TetrosEffect.TetrosGameCamera",
+              "__guid": "da6ba748-a354-432c-a7be-234f15faa3fc",
               "LerpSpeed": 5
             }
           ]
@@ -298,18 +355,21 @@
       ]
     },
     {
-      "Id": "5573f37b-ad5e-4da0-a4bd-659c9ac6a9e3",
+      "__guid": "5573f37b-ad5e-4da0-a4bd-659c9ac6a9e3",
+      "Flags": 0,
       "Name": "Particles",
       "Enabled": true,
       "Children": [
         {
-          "Id": "50ef2136-330f-4efc-af92-f083f7f29ed9",
+          "__guid": "50ef2136-330f-4efc-af92-f083f7f29ed9",
+          "Flags": 0,
           "Name": "Swarm Target 1",
           "Position": "-3228.745,-133.1025,-4003.299",
           "Enabled": true
         },
         {
-          "Id": "3f3ff8cd-e6a1-46f0-8ed6-fbf3bc37157b",
+          "__guid": "3f3ff8cd-e6a1-46f0-8ed6-fbf3bc37157b",
+          "Flags": 0,
           "Name": "Swarm Target 2",
           "Position": "1695.188,26.84199,2199.128",
           "Enabled": true
@@ -319,9 +379,10 @@
   ],
   "SceneProperties": {
     "FixedUpdateFrequency": 50,
-    "Lerping": true,
     "MaxFixedUpdates": 5,
     "NetworkFrequency": 60,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 1,
     "ThreadedAnimation": true,
     "TimeScale": 1,
     "UseFixedUpdate": true,
@@ -340,6 +401,8 @@
   },
   "Title": "tetros",
   "Description": "",
-  "LastSaved": "2024-02-15T20:28:33.5877795-05:00",
-  "__references": []
+  "ResourceVersion": 1,
+  "__references": [],
+  "IsValid": true,
+  "__version": 1
 }
