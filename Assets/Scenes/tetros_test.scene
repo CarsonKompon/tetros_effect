@@ -1,35 +1,41 @@
 {
+  "__guid": "745aaf15-ffeb-4098-9047-6f8fedf57457",
   "GameObjects": [
     {
-      "Id": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
+      "__guid": "db21792f-cd6f-4221-b9c5-559c8069f3bc",
+      "Flags": 0,
       "Name": "Game Manager",
       "Position": "-198.5726,-300.1547,628.7739",
       "Enabled": true
     },
     {
-      "Id": "407067ac-fe0d-42d7-bd12-a93e1280810a",
+      "__guid": "407067ac-fe0d-42d7-bd12-a93e1280810a",
+      "Flags": 0,
       "Name": "Main Camera",
       "Position": "-82.9607,-2110.293,123.7698",
       "Rotation": "-0.02735923,0.02776051,0.701407,0.7116945",
       "Enabled": true,
       "Components": [
         {
-          "__type": "CameraComponent",
-          "__enabled": true,
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "e9b601f9-5e3f-44ae-8f3b-898c227f6d4c",
           "BackgroundColor": "0.08911,0.08911,0.08911,1",
           "ClearFlags": "All",
           "FieldOfView": 60,
+          "IsMainCamera": true,
           "Orthographic": true,
           "OrthographicHeight": 1614.402,
+          "Priority": 1,
           "RenderExcludeTags": "",
           "RenderTags": "",
           "TargetEye": "None",
+          "Viewport": "0,0,1,1",
           "ZFar": 10000,
           "ZNear": 10
         },
         {
-          "__type": "Bloom",
-          "__enabled": true,
+          "__type": "Sandbox.Bloom",
+          "__guid": "f877cc6d-7cf1-4753-b61a-c613aa7ba09a",
           "BloomColor": {
             "color": [
               {
@@ -63,15 +69,19 @@
       ]
     },
     {
-      "Id": "6d57a4b8-a682-44b5-90bf-0edbad29d531",
+      "__guid": "6d57a4b8-a682-44b5-90bf-0edbad29d531",
+      "Flags": 0,
       "Name": "Directional Light",
       "Position": "0.0000167524,-2110.244,322.3834",
       "Rotation": "-0.1896882,0.3862845,0.5674009,0.7020389",
+      "Tags": "light_directional,light",
       "Enabled": true,
       "Components": [
         {
-          "__type": "DirectionalLight",
-          "__enabled": true,
+          "__type": "Sandbox.DirectionalLight",
+          "__guid": "11318699-37d5-455b-8cab-a3a1f4a91640",
+          "FogMode": "Enabled",
+          "FogStrength": 1,
           "LightColor": "1,1,1,1",
           "Shadows": true,
           "SkyColor": "0.05882,0.07451,0.08235,1"
@@ -79,26 +89,34 @@
       ]
     },
     {
-      "Id": "13acaa9e-a456-4e92-b479-340f470ddd77",
+      "__guid": "13acaa9e-a456-4e92-b479-340f470ddd77",
+      "Flags": 0,
       "Name": "Singleplayer Board",
       "Position": "-320,-0.0004807256,608",
-      "Networked": true,
       "Enabled": true,
+      "NetworkMode": 1,
       "Children": [
         {
-          "Id": "f8dd9222-9ab7-4d1a-aac7-2e28dd4cd410",
+          "__guid": "f8dd9222-9ab7-4d1a-aac7-2e28dd4cd410",
+          "Flags": 0,
           "Name": "Board Model",
           "Position": "320,0,-608",
           "Rotation": "0.707107,0,0,0.7071065",
           "Enabled": true,
           "Components": [
             {
-              "__type": "ModelRenderer",
-              "__enabled": true,
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "4c738d53-746b-4f4a-af68-a1de7c8aab91",
               "BodyGroups": 18446744073709551615,
               "MaterialOverride": "materials/glowing.vmat",
               "Model": "models/board.vmdl",
-              "ShouldCastShadows": false,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
               "Tint": "1,1,1,1"
             }
           ]
@@ -106,301 +124,366 @@
       ]
     },
     {
-      "Id": "167e98c4-8e57-470c-93b8-1c63e48110d1",
+      "__guid": "167e98c4-8e57-470c-93b8-1c63e48110d1",
+      "Flags": 0,
       "Name": "Object",
       "Enabled": true,
       "Children": [
         {
-          "Id": "94e0f906-6c88-4f2f-9af6-fef64a6b475e",
+          "__guid": "94e0f906-6c88-4f2f-9af6-fef64a6b475e",
+          "Flags": 0,
           "Name": "I Piece",
           "Position": "-4.509744,0,5.301487",
           "Enabled": true,
           "Children": [
             {
-              "Id": "55e00b1b-6d07-4dad-a852-2997b4f6884c",
+              "__guid": "55e00b1b-6d07-4dad-a852-2997b4f6884c",
+              "Flags": 0,
               "Name": "block",
               "Position": "-32,0,32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "611d513b-d8a5-44ea-a39e-0978816c1097",
+              "__guid": "611d513b-d8a5-44ea-a39e-0978816c1097",
+              "Flags": 0,
               "Name": "block",
               "Position": "-96,0,32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "ac3af16e-9e01-4f33-964a-31cc0c9c6fd3",
+              "__guid": "ac3af16e-9e01-4f33-964a-31cc0c9c6fd3",
+              "Flags": 0,
               "Name": "block",
               "Position": "32,0,32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "67b49990-258c-47b0-8449-e89fca494e1f",
+              "__guid": "67b49990-258c-47b0-8449-e89fca494e1f",
+              "Flags": 0,
               "Name": "block",
               "Position": "96,0,32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             }
           ]
         }
       ]
     },
     {
-      "Id": "0db5fc9a-acc0-46ca-a231-82ef9094707c",
+      "__guid": "0db5fc9a-acc0-46ca-a231-82ef9094707c",
+      "Flags": 0,
       "Name": "Object",
       "Enabled": true,
       "Children": [
         {
-          "Id": "98304e9b-7c70-4503-bcb8-631c4f705ae9",
+          "__guid": "98304e9b-7c70-4503-bcb8-631c4f705ae9",
+          "Flags": 0,
           "Name": "T Piece",
           "Position": "-36.50974,123.7141,37.30149",
           "Enabled": true,
           "Children": [
             {
-              "Id": "64bf2661-1537-4e27-afc4-c05d31e85395",
+              "__guid": "64bf2661-1537-4e27-afc4-c05d31e85395",
+              "Flags": 0,
               "Name": "block",
-              "Position": "0,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "9cad2563-b3b4-4849-8bca-ffc9deb21057",
+              "__guid": "9cad2563-b3b4-4849-8bca-ffc9deb21057",
+              "Flags": 0,
               "Name": "block",
               "Position": "64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "0ffb20d2-58ec-4cfc-92a0-79e0f4dd71af",
+              "__guid": "0ffb20d2-58ec-4cfc-92a0-79e0f4dd71af",
+              "Flags": 0,
               "Name": "block",
               "Position": "0,0,-64",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "5a1c6435-bfe2-4539-916a-8055e1f7b74b",
+              "__guid": "5a1c6435-bfe2-4539-916a-8055e1f7b74b",
+              "Flags": 0,
               "Name": "block",
               "Position": "-64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             }
           ]
         }
       ]
     },
     {
-      "Id": "66f500c5-aff2-4cad-9df4-1aa2b25205d3",
+      "__guid": "66f500c5-aff2-4cad-9df4-1aa2b25205d3",
+      "Flags": 0,
       "Name": "Object",
       "Enabled": true,
       "Children": [
         {
-          "Id": "93af9317-4925-44db-a91a-b0c1b49fd735",
+          "__guid": "93af9317-4925-44db-a91a-b0c1b49fd735",
+          "Flags": 0,
           "Name": "L Piece",
           "Position": "-36.50974,123.7141,37.30149",
           "Enabled": true,
           "Children": [
             {
-              "Id": "384c2a90-de38-498e-ba50-5b1875adf391",
+              "__guid": "384c2a90-de38-498e-ba50-5b1875adf391",
+              "Flags": 0,
               "Name": "block",
-              "Position": "0,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "b67680e0-7939-43ec-af34-f867d4b9e176",
+              "__guid": "b67680e0-7939-43ec-af34-f867d4b9e176",
+              "Flags": 0,
               "Name": "block",
               "Position": "-64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "55111992-749c-44df-98f7-5b0882a5833f",
+              "__guid": "55111992-749c-44df-98f7-5b0882a5833f",
+              "Flags": 0,
               "Name": "block",
               "Position": "-64,0,-64",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "b614dffb-8e22-48f7-96e9-1fbe0691d182",
+              "__guid": "b614dffb-8e22-48f7-96e9-1fbe0691d182",
+              "Flags": 0,
               "Name": "block",
               "Position": "64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             }
           ]
         }
       ]
     },
     {
-      "Id": "151959a7-8434-4929-ba87-b111f610794b",
+      "__guid": "151959a7-8434-4929-ba87-b111f610794b",
+      "Flags": 0,
       "Name": "Object",
       "Enabled": true,
       "Children": [
         {
-          "Id": "23b4d0d8-ef8e-475e-9a96-86e9a516bd76",
+          "__guid": "23b4d0d8-ef8e-475e-9a96-86e9a516bd76",
+          "Flags": 0,
           "Name": "Inverted-L Piece",
           "Position": "-36.50974,123.7141,37.30149",
           "Enabled": true,
           "Children": [
             {
-              "Id": "894431ca-d00b-4c5d-84a3-201469e949dc",
+              "__guid": "894431ca-d00b-4c5d-84a3-201469e949dc",
+              "Flags": 0,
               "Name": "block",
-              "Position": "0,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "0b668a05-7c18-4ae3-8ecf-889f7322c0be",
+              "__guid": "0b668a05-7c18-4ae3-8ecf-889f7322c0be",
+              "Flags": 0,
               "Name": "block",
               "Position": "-64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "11d7a930-8013-4571-b98a-9446eccb9b21",
+              "__guid": "11d7a930-8013-4571-b98a-9446eccb9b21",
+              "Flags": 0,
               "Name": "block",
               "Position": "64,0,-64",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "b36d0a27-8443-49e1-98a9-a638dfd637f3",
+              "__guid": "b36d0a27-8443-49e1-98a9-a638dfd637f3",
+              "Flags": 0,
               "Name": "block",
               "Position": "64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             }
           ]
         }
       ]
     },
     {
-      "Id": "8a2c6f45-0441-4ac7-8fe9-ec80515f0e76",
+      "__guid": "8a2c6f45-0441-4ac7-8fe9-ec80515f0e76",
+      "Flags": 0,
       "Name": "Object",
       "Enabled": true,
       "Children": [
         {
-          "Id": "7d8f114b-2389-4d74-8564-f1bcf0f717a6",
+          "__guid": "7d8f114b-2389-4d74-8564-f1bcf0f717a6",
+          "Flags": 0,
           "Name": "S Piece",
           "Position": "-36.50974,123.7141,37.30149",
           "Enabled": true,
           "Children": [
             {
-              "Id": "f01c4673-ff93-4eab-8a24-262ecb9611d1",
+              "__guid": "f01c4673-ff93-4eab-8a24-262ecb9611d1",
+              "Flags": 0,
               "Name": "block",
               "Position": "0,0,-64",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "8eab6f2f-8d36-4dec-bbd1-88675e940434",
+              "__guid": "8eab6f2f-8d36-4dec-bbd1-88675e940434",
+              "Flags": 0,
               "Name": "block",
               "Position": "-64,0,-64",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "144780bd-a600-435e-88a7-f0a760235034",
+              "__guid": "144780bd-a600-435e-88a7-f0a760235034",
+              "Flags": 0,
               "Name": "block",
-              "Position": "0,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "090b62ee-d1e2-4cc6-9440-33b240d9ff93",
+              "__guid": "090b62ee-d1e2-4cc6-9440-33b240d9ff93",
+              "Flags": 0,
               "Name": "block",
               "Position": "64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             }
           ]
         }
       ]
     },
     {
-      "Id": "c8faa7fc-fba3-4f5f-85aa-be35c9cb619b",
+      "__guid": "c8faa7fc-fba3-4f5f-85aa-be35c9cb619b",
+      "Flags": 0,
       "Name": "Object",
       "Enabled": true,
       "Children": [
         {
-          "Id": "09736a85-8593-4808-b98b-47dd8c88df8e",
+          "__guid": "09736a85-8593-4808-b98b-47dd8c88df8e",
+          "Flags": 0,
           "Name": "Z Piece",
           "Position": "-36.50974,123.7141,-26.69851",
           "Enabled": true,
           "Children": [
             {
-              "Id": "5beb4cd2-105a-411d-ac6a-606ef3b272c2",
+              "__guid": "5beb4cd2-105a-411d-ac6a-606ef3b272c2",
+              "Flags": 0,
               "Name": "block",
-              "Position": "0,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "a47e7ef9-0548-44c8-9df2-654a9ec251c6",
+              "__guid": "a47e7ef9-0548-44c8-9df2-654a9ec251c6",
+              "Flags": 0,
               "Name": "block",
               "Position": "64,0,0",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "f7e1a1ca-bee0-414d-8d18-959156c4e6c7",
+              "__guid": "f7e1a1ca-bee0-414d-8d18-959156c4e6c7",
+              "Flags": 0,
               "Name": "block",
               "Position": "0,0,64",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "df85e67e-dedc-4cc6-bf79-fc87dd934617",
+              "__guid": "df85e67e-dedc-4cc6-bf79-fc87dd934617",
+              "Flags": 0,
               "Name": "block",
               "Position": "-64,0,64",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             }
           ]
         }
       ]
     },
     {
-      "Id": "449bcf81-f4c7-45b9-a563-d82e73c920f4",
+      "__guid": "449bcf81-f4c7-45b9-a563-d82e73c920f4",
+      "Flags": 0,
       "Name": "Object",
       "Enabled": true,
       "Children": [
         {
-          "Id": "f8168ee4-88e6-4aeb-aa66-3a5f9bfcd88b",
+          "__guid": "f8168ee4-88e6-4aeb-aa66-3a5f9bfcd88b",
+          "Flags": 0,
           "Name": "O Piece",
           "Position": "-4.509744,123.7141,5.301487",
           "Enabled": true,
           "Children": [
             {
-              "Id": "094cabd0-c8fc-4d40-a99f-7665d09b57a6",
+              "__guid": "094cabd0-c8fc-4d40-a99f-7665d09b57a6",
+              "Flags": 0,
               "Name": "block",
               "Position": "-32,0,32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "929af373-7d3d-4ffc-bd14-a2aed8602143",
+              "__guid": "929af373-7d3d-4ffc-bd14-a2aed8602143",
+              "Flags": 0,
               "Name": "block",
               "Position": "-32,-0.0001453893,-32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "3e5a411f-29a3-41b8-a3f4-85ccad34ecb1",
+              "__guid": "3e5a411f-29a3-41b8-a3f4-85ccad34ecb1",
+              "Flags": 0,
               "Name": "block",
               "Position": "32,0,32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             },
             {
-              "Id": "6fc93c91-7844-4c40-bb67-9f6cc3f3e375",
+              "__guid": "6fc93c91-7844-4c40-bb67-9f6cc3f3e375",
+              "Flags": 0,
               "Name": "block",
               "Position": "32,0,-32",
               "Enabled": true,
-              "__Prefab": "prefabs/block.object"
+              "__Prefab": "prefabs/block.prefab",
+              "__PrefabVariables": {}
             }
           ]
         }
@@ -408,15 +491,31 @@
     }
   ],
   "SceneProperties": {
-    "Lerping": true,
-    "UseFixedUpdate": true,
+    "FixedUpdateFrequency": 50,
+    "MaxFixedUpdates": 5,
+    "NetworkFrequency": 60,
+    "NetworkInterpolation": true,
+    "PhysicsSubSteps": 1,
     "ThreadedAnimation": true,
     "TimeScale": 1,
-    "MaxFixedUpdates": 5,
-    "FixedUpdateFrequency": 50,
-    "NetworkFrequency": 60
+    "UseFixedUpdate": true,
+    "NavMesh": {
+      "Enabled": false,
+      "IncludeStaticBodies": true,
+      "IncludeKeyframedBodies": true,
+      "EditorAutoUpdate": true,
+      "AgentHeight": 64,
+      "AgentRadius": 16,
+      "AgentStepSize": 18,
+      "AgentMaxSlope": 40,
+      "ExcludedBodies": "",
+      "IncludedBodies": ""
+    }
   },
   "Title": "tetros",
   "Description": "",
-  "__references": []
+  "ResourceVersion": 1,
+  "__references": [],
+  "IsValid": true,
+  "__version": 1
 }
