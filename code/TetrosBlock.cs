@@ -1,5 +1,5 @@
-using System;
 using Sandbox;
+using System;
 
 namespace TetrosEffect;
 
@@ -14,6 +14,6 @@ public sealed class TetrosBlock : Component
 	protected override void OnUpdate()
 	{
 		var lerp = 1f - MathF.Pow( 0.5f, Time.Delta * 10 );
-		Transform.LocalPosition = Vector3.Lerp( Transform.LocalPosition, Board.GetLocalPosition( (int)Position.x, (int)Position.y ), lerp );
+		LocalPosition = Vector3.Lerp( LocalPosition, Board.GetLocalPosition( (int)Position.x, (int)Position.y ), lerp );
 	}
 }

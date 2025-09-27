@@ -51,7 +51,7 @@ public sealed class TetrosBoardManager : Component
 
 	protected override void OnStart()
 	{
-		AnchorPosition = Board.Transform.Position;
+		AnchorPosition = Board.WorldPosition;
 
 		StartGame();
 	}
@@ -147,12 +147,12 @@ public sealed class TetrosBoardManager : Component
 
 		// Lerp to anchor position
 		var lerpAm = 1f - MathF.Pow( 0.5f, Time.Delta * 10 );
-		Board.Transform.Position = Vector3.Lerp( Board.Transform.Position, AnchorPosition, lerpAm );
+		Board.WorldPosition = Vector3.Lerp( Board.WorldPosition, AnchorPosition, lerpAm );
 
 		// Move the ghost piece
 		if ( GhostPiece.IsValid() )
 		{
-			GhostPiece.Transform.Position = GetPosition( (int)CurrentPiece.Position.x + (int)LastGhostOffset.x, (int)CurrentPiece.Position.y + (int)LastGhostOffset.y ) + new Vector3( GridSize / 2f, 0, -GridSize / 2f ); ;
+			GhostPiece.WorldPosition = GetPosition( (int)CurrentPiece.Position.x + (int)LastGhostOffset.x, (int)CurrentPiece.Position.y + (int)LastGhostOffset.y ) + new Vector3( GridSize / 2f, 0, -GridSize / 2f ); ;
 		}
 
 		// Loop the music
@@ -183,7 +183,7 @@ public sealed class TetrosBoardManager : Component
 		for ( int i = 0; i < am; i++ )
 		{
 			var piece = SpawnPiece( Queue[i], false );
-			piece.Transform.Position = GetPosition( 13, 1 + i * 3 );
+			piece.WorldPosition = GetPosition( 13, 1 + i * 3 );
 			if ( i > 0 )
 			{
 				foreach ( var block in piece.Container.Children )
@@ -447,7 +447,7 @@ public sealed class TetrosBoardManager : Component
 			HeldPiece = SpawnPiece( CurrentPiece.Type, false );
 			SpawnCurrentPiece( heldType );
 		}
-		HeldPiece.Transform.Position = GetPosition( -4, 1 );
+		HeldPiece.WorldPosition = GetPosition( -4, 1 );
 		JustHeld = true;
 		PlaySound( Theme.HoldSound );
 
@@ -693,12 +693,12 @@ public sealed class TetrosBoardManager : Component
 	public void NudgeBoard( Vector2 direction )
 	{
 		if ( !TetrosSettings.Instance.BoardNudging ) return;
-		Board.Transform.Position += new Vector3( direction.x * GridSize, 0, direction.y * GridSize );
+		Board.WorldPosition += new Vector3( direction.x * GridSize, 0, direction.y * GridSize );
 	}
 
 	public Vector3 GetPosition( int x, int y )
 	{
-		return Transform.Position + new Vector3( x * GridSize, 0, -y * GridSize );
+		return WorldPosition + new Vector3( x * GridSize, 0, -y * GridSize );
 	}
 
 	public Vector3 GetLocalPosition( int x, int y )
@@ -714,7 +714,7 @@ public sealed class TetrosBoardManager : Component
 	SoundHandle PlaySound( string soundName )
 	{
 		if ( string.IsNullOrEmpty( soundName ) ) return null;
-		var sound = Sound.Play( soundName, Camera.Transform.Position + Camera.Transform.Rotation.Forward * 25f + Camera.Transform.Rotation.Left * 5f );
+		var sound = Sound.Play( soundName, Camera.WorldPosition + Camera.WorldRotation.Forward * 25f + Camera.WorldRotation.Left * 5f );
 		if ( sound is not null ) sound.Volume = TetrosSettings.Instance.SfxVolume;
 		return sound;
 	}

@@ -1,5 +1,5 @@
-using System;
 using Sandbox;
+using System;
 
 namespace TetrosEffect;
 
@@ -13,14 +13,14 @@ public sealed class TetrosGameCamera : Component
 
 	protected override void OnStart()
 	{
-		startingPosition = Transform.Position;
+		startingPosition = WorldPosition;
 		bloom = Components.Get<Bloom>();
 	}
 
 	protected override void OnUpdate()
 	{
 		var lerp = 1f - MathF.Pow( 0.5f, Time.Delta * LerpSpeed );
-		Transform.Position = Vector3.Lerp( Transform.Position, startingPosition, lerp );
+		WorldPosition = Vector3.Lerp( WorldPosition, startingPosition, lerp );
 		bloom.Strength = MathX.Lerp( bloom.Strength, 0.15f, lerp );
 	}
 

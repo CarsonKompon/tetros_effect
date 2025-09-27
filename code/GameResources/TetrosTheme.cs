@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TetrosEffect;
 
-[GameResource( "Tetros Theme", "tetros", "Describes a Tetros Effect Theme", Icon = "theme" )]
+[AssetType( Name = "Tetros Theme", Extension = "tetros", Category = "Tetros" )]
 public partial class TetrosTheme : GameResource
 {
 	public string Name { get; set; } = "Tetros Theme";
@@ -29,4 +29,8 @@ public partial class TetrosTheme : GameResource
 	public static TetrosTheme Find( int id ) => All.Where( x => x.ResourceId == id ).FirstOrDefault();
 	public static TetrosTheme FindByName( string name ) => All.Where( x => x.ResourceName == name ).FirstOrDefault();
 
+	protected override Bitmap CreateAssetTypeIcon( int width, int height )
+	{
+		return CreateSimpleAssetTypeIcon( "theme", width, height, "#fdea60", "black" );
+	}
 }

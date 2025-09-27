@@ -28,6 +28,7 @@
     "ControlModes": {
       "Keyboard": true,
       "Gamepad": true
-    }
+    },
+    "LaunchMode": "Normal"
   }
 }

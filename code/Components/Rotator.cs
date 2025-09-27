@@ -10,6 +10,6 @@ public sealed class Rotator : Component
 
 	protected override void OnUpdate()
 	{
-		Transform.LocalRotation *= Speed * Time.Delta;
+		LocalRotation *= Speed * Time.Delta;
 	}
 }
