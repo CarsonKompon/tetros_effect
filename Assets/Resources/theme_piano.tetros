@@ -14,5 +14,6 @@
   "LineSound": "tetros_piano_line",
   "TetrosSound": "tetros_piano_tetros",
   "HoldSound": "tetros_piano_hold",
-  "__references": []
+  "__references": [],
+  "__version": 0
 }

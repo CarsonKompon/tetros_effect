@@ -14,5 +14,6 @@
   "LineSound": "tetros_retro_line",
   "TetrosSound": "tetros_retro_tetros",
   "HoldSound": "tetros_retro_hold",
-  "__references": []
+  "__references": [],
+  "__version": 0
 }

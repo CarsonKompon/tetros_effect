@@ -1,9 +1,8 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using Sandbox;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TetrosEffect;
-using System.Diagnostics.CodeAnalysis;
 
 [Category( "Tetros Effect" )]
 public sealed class TetrosBoardManager : Component
@@ -243,7 +242,8 @@ public sealed class TetrosBoardManager : Component
 	public void StartGame()
 	{
 		ResetGame();
-		Board.Components.Get<ModelRenderer>().Model = Model.Load( Theme.BoardModel );
+		Theme ??= TetrosTheme.All.FirstOrDefault();
+		Board.Components.Get<ModelRenderer>().Model = Theme.BoardModel;
 
 		IsPlaying = true;
 		RequestHighscore();
@@ -300,7 +300,7 @@ public sealed class TetrosBoardManager : Component
 			foreach ( var child in piece.Container.Children )
 			{
 				var model = child.Components.Get<ModelRenderer>();
-				model.Model = Model.Load( Theme.BlockModel );
+				model.Model = Theme.BlockModel;
 				model.Tint = piece.Color;
 			}
 			return piece;
@@ -335,7 +335,7 @@ public sealed class TetrosBoardManager : Component
 		var blockRenderer = blockObject.Components.Get<ModelRenderer>();
 		if ( blockRenderer != null )
 		{
-			blockRenderer.Model = Model.Load( Theme.BlockModel );
+			blockRenderer.Model = Theme.BlockModel;
 			blockRenderer.Tint = color;
 		}
 		Blocks.Add( blockScript );
@@ -721,8 +721,8 @@ public sealed class TetrosBoardManager : Component
 
 	public void StopMusic()
 	{
-		SlowMusic.Stop( 0 );
-		FastMusic.Stop( 0 );
+		SlowMusic?.Stop( 0 );
+		FastMusic?.Stop( 0 );
 	}
 
 	public float GetWaitTime()
