@@ -1,0 +1,54 @@
+@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using Sandbox;
+@using Sandbox.UI;
+@using Sandbox.UI.Construct;
+@inherits PanelComponent
+
+@namespace TetrosEffect
+
+<root>
+	
+	<TetrosLeaderboardPanel />
+
+	<button class="btn" onclick=@Back>Back</button>
+</root>
+
+@code
+{
+	public bool IsVisible = false;
+	float Alpha = 0f;
+	
+	void Back()
+	{
+		var mainMenu = Scene.Components.GetInDescendants<TetrosMainMenu>();
+		if (mainMenu is not null)
+		{
+			mainMenu.IsVisible = true;
+			mainMenu.AllVisible = true;
+		}
+		var pauseMenu = Scene.Components.GetInDescendants<TetrosPauseMenu>();
+		if (pauseMenu is not null)
+			pauseMenu.IsVisible = true;
+
+		IsVisible = false;
+	}
+
+	protected override void OnUpdate()
+	{
+		if (IsVisible && Alpha < 1f)
+		{
+			Alpha += RealTime.Delta;
+			Alpha = Math.Clamp(Alpha, 0f, 1f);
+		}
+		else if (!IsVisible && Alpha > 0f)
+		{
+			Alpha -= RealTime.Delta;
+			Alpha = Math.Clamp(Alpha, 0f, 1f);
+		}
+
+		Panel.Style.Opacity = Alpha;
+		SetClass("no-interact", Alpha < 1f);
+	}
+}

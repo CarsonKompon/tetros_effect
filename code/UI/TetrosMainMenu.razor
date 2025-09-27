@@ -15,6 +15,7 @@
 	<div class="right">
 		<div class="options">
 			<button class="btn play" onclick=@StartGame>Start Game</button>
+			<button class="btn" onclick=@OpenLeaderboards>Leaderboards</button>
 			<button class="btn" onclick=@Settings>Settings</button>
 			<button class="btn" onclick=@Quit>Quit</button>
 		</div>
@@ -31,7 +32,7 @@
 
 	[Property] MusicVolumeOverride MainMenuMusic { get; set; }
 	[Property] string SingleplayerSceneName { get; set; }
-	
+
 
 	float StartTimer = -1f;
 
@@ -40,6 +41,16 @@
 		IsVisible = false;
 
 		StartTimer = 0f;
+	}
+
+	void OpenLeaderboards()
+	{
+		AllVisible = false;
+		var leaderboardMenu = Scene.Components.GetInDescendants<TetrosLeaderboardMenu>();
+		if ( leaderboardMenu is not null )
+		{
+			leaderboardMenu.IsVisible = true;
+		}
 	}
 
 	void Settings()

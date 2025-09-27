@@ -251,6 +251,17 @@
           "OnComponentUpdate": null
         },
         {
+          "__type": "TetrosEffect.TetrosLeaderboardMenu",
+          "__guid": "2ad2f51e-3bef-47a9-b996-a99883c6e6d5",
+          "__enabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null
+        },
+        {
           "__type": "TetrosEffect.FadeInComponent",
           "__guid": "17395ef9-f06b-49df-acd7-a06bcab4998e",
           "__enabled": true,
@@ -312,10 +323,15 @@
                 "mode": "Mirrored"
               }
             ],
-            "CurveB": {
-              "rangex": "0,0",
-              "rangey": "0,0"
-            }
+            "CurveB": [
+              {
+                "x": 0.5,
+                "y": 0.5,
+                "in": 0,
+                "out": 0,
+                "mode": "Mirrored"
+              }
+            ]
           },
           "ApplyAlpha": true,
           "ApplyColor": true,
@@ -440,10 +456,15 @@
                 }
               ]
             },
-            "CurveB": {
-              "rangex": "0,0",
-              "rangey": "0,0"
-            }
+            "CurveB": [
+              {
+                "x": 0.5,
+                "y": 0.5,
+                "in": 0,
+                "out": 0,
+                "mode": "Mirrored"
+              }
+            ]
           },
           "SequenceId": 0,
           "SequenceSpeed": 1,

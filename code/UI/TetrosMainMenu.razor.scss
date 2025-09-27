@@ -13,7 +13,7 @@ TetrosMainMenu
 	align-items: center;
 
 	font-family: 04b08;
-	gap: 64px;
+	gap: 92px;
 
 	text-shadow: 0px 0px 8px black;
 
@@ -51,8 +51,6 @@ TetrosMainMenu
 
 	.right
 	{
-		width: 33%;
-
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
