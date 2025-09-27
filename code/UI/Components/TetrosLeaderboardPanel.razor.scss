@@ -10,17 +10,22 @@ TetrosLeaderboardPanel
     {
         justify-content: space-between;
         gap: 32px;
+
+        .board-name
+        {
+            flex-grow: 1;
+        }
     } 
 
     .entries
     {
         flex-direction: column;
-        gap: 16px;
 
         .entry
         {
             justify-content: space-between;
             gap: 8px;
+            padding: 6px 8px;
 
             .rank
             {
@@ -44,6 +49,11 @@ TetrosLeaderboardPanel
                     text-overflow: ellipsis;
                     max-width: 200px;
                 }
+            }
+
+            &.me
+            {
+                background-color: rgba(white, 0.2);
             }
         }
     }
